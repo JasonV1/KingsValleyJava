@@ -1,0 +1,1 @@
+Dit is een opdracht voor AM2A. KingsValley1 moet worden omgezet naar Android.
