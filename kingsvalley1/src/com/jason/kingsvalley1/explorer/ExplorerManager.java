@@ -2,6 +2,7 @@ package com.jason.kingsvalley1.explorer;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.floor.Floor;
 import com.jason.kingsvalley1.stairsLeft.StairsLeft;
 import com.jason.kingsvalley1.stairsRight.StairsRight;
 
@@ -11,6 +12,7 @@ public class ExplorerManager
     private static Explorer explorer;
     private static ArrayList<StairsRight> stairsRight;
     private static ArrayList<StairsLeft> stairsLeft;
+    private static ArrayList<Floor> floors;
     private static boolean debug = false;
 
     //Properties
@@ -31,7 +33,13 @@ public class ExplorerManager
         stairsLeft = value;
     }
 
-    public static boolean CollisionDetectionBottomStairsRight()
+    public static ArrayList<Floor> getFloors() {
+		return floors;
+	}
+	public static void setFloors(ArrayList<Floor> floors) {
+		ExplorerManager.floors = floors;
+	}
+	public static boolean CollisionDetectionBottomStairsRight()
     {
         for (StairsRight stairs : stairsRight)
         {

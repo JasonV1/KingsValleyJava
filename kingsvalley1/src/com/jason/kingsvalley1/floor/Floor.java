@@ -45,7 +45,8 @@ public class Floor {
 		//Voor het teken en om te debuggen
 		for ( int i = 0; i < this.amountOfBricks; i++)
 		{
-			this.floor.add(new Brick(this.game, this.position, "floorTexture16x16.png", 'F' ));
+			this.floor.add(new Brick(this.game, new Vector2(this.position.x + 1 * 16f, this.position.y),
+					"floorTexture16x16.png", 'F' ));
 		}
 		this.collisionRect = new Rectangle(this.position.x,
 										   this.position.y,

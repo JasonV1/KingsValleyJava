@@ -14,6 +14,7 @@ import com.jason.kingsvalley1.brick.Brick;
 import com.jason.kingsvalley1.brick.IBuildingBlock;
 import com.jason.kingsvalley1.explorer.Explorer;
 import com.jason.kingsvalley1.explorer.ExplorerManager;
+import com.jason.kingsvalley1.floor.Floor;
 import com.jason.kingsvalley1.gesturelistener.ExplorerGestureListener;
 import com.jason.kingsvalley1.inputprocessor.ExplorerInputProcessor;
 import com.jason.kingsvalley1.stairsLeft.StairsLeft;
@@ -32,6 +33,7 @@ public class Level {
     private Explorer explorer;
     private ArrayList<StairsRight> stairsRight;
     private ArrayList<StairsLeft> stairsLeft;
+    private ArrayList<Floor> floors;
     private ExplorerInputProcessor input;
     private ExplorerGestureListener gesture;
     private InputMultiplexer multiplexer;
@@ -45,8 +47,8 @@ public class Level {
 	public void setExplorer(Explorer explorer) {
 		this.explorer = explorer;
 	}
-    
-    
+   
+	//Constructor 
     public Level(KingsValley1 game, int levelIndex) throws IOException 
 	{
 		this.game = game;
@@ -54,8 +56,10 @@ public class Level {
         this.LoadAssets();
         this.stairsRight = new ArrayList<StairsRight>();
         this.stairsLeft = new ArrayList<StairsLeft>();
+        this.floors = new ArrayList<Floor>();
         this.DetectStairsRight();
         this.DetectStairsLeft();
+        this.DetectFloors();
         this.input = new ExplorerInputProcessor(this);
         this.gesture = new ExplorerGestureListener(this);
         this.multiplexer = new InputMultiplexer();
@@ -64,6 +68,7 @@ public class Level {
         Gdx.input.setInputProcessor(this.multiplexer);
         ExplorerManager.setStairsRight(this.stairsRight);
         ExplorerManager.setStairsLeft(this.stairsLeft);
+        ExplorerManager.setFloors(this.floors);
 	}
 
 	private void LoadAssets() throws IOException 
@@ -139,7 +144,13 @@ public class Level {
 				{
 					if (amountOfBricks > 0)
 					{
-						
+						this.floors.add(new Floor(this.game,
+												  position,
+												  amountOfBricks,
+												  this.bricks[j - 1][i].getCharacter(),
+												  this.bricks[j - amountOfBricks][i].getCharacter()));
+						amountOfBricks = 0;
+						position = Vector2.Zero;
 					}
 				}
 			}
@@ -221,7 +232,14 @@ public class Level {
         {
             stair.Draw(delta);
         }
-       
+        
+        if (ExplorerManager.Debug())
+        {
+        	for (Floor floor : this.floors)
+        	{
+        		floor.Draw(delta);
+        	}
+        }
         if (this.explorer != null)
             this.explorer.Draw(delta);
     }

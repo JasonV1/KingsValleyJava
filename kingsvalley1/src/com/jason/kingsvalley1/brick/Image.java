@@ -44,6 +44,23 @@ public class Image
 				   				  false,
 				   				  true);
     }
+    
+    
+    public void Draw(float delta, int i)
+    {
+        //this.game.getBatch().draw(this.texture, this.position.x, this.position.y);
+        this.game.getBatch().draw(this.texture,
+				    			  this.position.x + i * 16,
+				   				  this.position.y,
+				   				  16f,
+				   				  16f,
+				   				  0,
+				   				  0,
+				   				  16,
+				   				  16,
+				   				  false,
+				   				  true);
+    }
 
 	public String getImageName() {
 		return null;
