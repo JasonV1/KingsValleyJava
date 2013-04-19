@@ -1,8 +1,8 @@
 package com.adruijter.kingsvalley1;
 
+import com.adruijter.kingsvalley1.KingsValley1;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.jason.kingsvalley1.KingsValley1;
 
 public class Main {
 	public static void main(String[] args) {
