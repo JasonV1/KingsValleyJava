@@ -38,6 +38,11 @@ public class ExplorerWalkLeft extends AnimatedSprite{
 			
 			this.explorer.setState(this.explorer.getWalkUpStairsLeft());
 		}
+		if (ExplorerManager.CollisionDetectionFallOfFloorLeft())
+		{
+			this.explorer.getFallOfFloorLeft().Initialize();
+			this.explorer.setState(this.explorer.getFallOfFloorLeft());
+		}
 		super.Update(delta);
 	}
 	

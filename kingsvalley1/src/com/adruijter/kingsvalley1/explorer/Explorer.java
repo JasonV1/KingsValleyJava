@@ -16,6 +16,7 @@ public class Explorer
 	private Vector2 position;
 	private float speed;
 	private float pixelsThroughFloor;
+	private float pixelsInWallRight;
 	private Texture texture;
 	private AnimatedSprite state;
 	private ExplorerWalkRight walkRight;
@@ -34,6 +35,8 @@ public class Explorer
 	private ExplorerIdleUpStairsLeft idleUpStairsLeft;
 	private ExplorerIdleDownStairsLeft idleDownStairsLeft;
 	private ExplorerWalkDownStairsLeft walkDownStairsLeft;
+	private ExplorerFallOfFloorLeft fallOfFloorLeft;
+	private ExplorerFallOfFloorRight fallOfFloorRight;
 	private Rectangle collisionRectStairs;
 	private Texture collisionText;
 	
@@ -194,6 +197,24 @@ public class Explorer
 	public void setPixelsThroughFloor(float pixelsThroughFloor) {
 		this.pixelsThroughFloor = pixelsThroughFloor;
 	}
+	public ExplorerFallOfFloorLeft getFallOfFloorLeft() {
+		    return fallOfFloorLeft;
+		  }
+	public void setFallOfFloorLeft(ExplorerFallOfFloorLeft fallOfFloorLeft) {
+		    this.fallOfFloorLeft = fallOfFloorLeft;
+		  }
+	public ExplorerFallOfFloorRight getFallOfFloorRight() {
+		return fallOfFloorRight;
+	}
+	public void setFallOfFloorRight(ExplorerFallOfFloorRight fallOfFloorRight) {
+		this.fallOfFloorRight = fallOfFloorRight;
+	}
+	public float getPixelsInWallRight() {
+		return pixelsInWallRight;
+	}
+	public void setPixelsInWallRight(float pixelsInWallRight) {
+		this.pixelsInWallRight = pixelsInWallRight;
+	}
 	//Constructor
 	public Explorer(KingsValley1 game, Vector2 position, float speed)
 	{
@@ -216,6 +237,8 @@ public class Explorer
 		this.idleDownStairsRight = new ExplorerIdleDownStairsRight(this);
 		this.walkDownStairsRight = new ExplorerWalkDownStairsRight(this);
 		this.walkUpStairsLeft = new ExplorerWalkUpStairsLeft(this);
+		this.fallOfFloorLeft = new ExplorerFallOfFloorLeft(this, -1, 1);
+		this.fallOfFloorRight = new ExplorerFallOfFloorRight(this, 1, 1);
 		this.idleUpStairsLeft = new ExplorerIdleUpStairsLeft(this);
 		this.idleDownStairsLeft = new ExplorerIdleDownStairsLeft(this);
 		this.walkDownStairsLeft = new ExplorerWalkDownStairsLeft(this);

@@ -38,6 +38,18 @@ public class ExplorerWalkRight extends AnimatedSprite{
 		{			
 			this.explorer.setState(this.explorer.getWalkUpStairsRight());
 		}
+		if (ExplorerManager.CollisionDetectionFallOfFloorRight())
+		{
+			this.explorer.getFallOfFloorRight().Initialize();
+			this.explorer.setState(this.explorer.getFallOfFloorRight());
+		}
+		if (ExplorerManager.CollisionDetectionWallInFrontRight())
+		{
+			Gdx.app.log("123", "Gebots met muur");
+			this.explorer.setPosition(this.explorer.getPosition().add(this.explorer.getPixelsInWallRight(), 0f));
+			this.explorer.getIdleRight();
+			this.explorer.setState(explorer.getIdleRight());
+		}
 		super.Update(delta);
 	}
 	

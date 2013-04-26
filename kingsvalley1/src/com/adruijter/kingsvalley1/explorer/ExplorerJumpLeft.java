@@ -2,6 +2,7 @@ package com.adruijter.kingsvalley1.explorer;
 
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.KingsValley1;
 
 public class ExplorerJumpLeft extends AnimatedSprite
 {
@@ -46,6 +47,16 @@ public class ExplorerJumpLeft extends AnimatedSprite
             this.explorer.setPosition(new Vector2(x, startY));
             this.explorer.setState(this.explorer.getWalkLeft());
 
+        }
+        if (ExplorerManager.CollisionDetectionGroundAfterJump())
+        {
+        	this.explorer.setPosition(new Vector2(x,
+        								 this.explorer.getCollisionRectStairs().y +
+        								 this.explorer.getPixelsThroughFloor()));
+        	if (KingsValley1.IsAndroid())
+        		this.explorer.setState(this.explorer.getWalkLeft());
+        	else
+        		this.explorer.setState(this.explorer.getIdleLeft());
         }
         //base.Update(gameTime);
     }
