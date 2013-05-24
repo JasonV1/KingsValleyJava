@@ -254,7 +254,7 @@ public class Explorer
 	{
 		this.game = game;
 		this.position = position;
-		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 16, 20, 17);
+		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 16, 16, 17);
 		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
 		this.speed = speed;	
 		this.texture = new Texture("data/Explorer/explorer.png");
@@ -302,10 +302,10 @@ public class Explorer
 	//Draw
 	public void Draw(float delta)
 	{
-		this.getGame().getBatch().setColor(1f, 1f, 1f, 1f);
+		this.getGame().getBatch().setColor(1f, 0f, 1f, 0.5f);
 		//this.game.getBatch().draw(this.collisionText, this.collisionRectStairs.x, this.collisionRectStairs.y, 
 		//		this.collisionRectStairs.getWidth(), this.collisionRectStairs.getHeight());
-		this.game.getBatch().draw(this.collisionText, 
+		/*this.game.getBatch().draw(this.collisionText, 
 				this.collisionRectJumpRight.x,
 				this.collisionRectJumpRight.y, 
 				this.collisionRectStairs.getWidth(), this.collisionRectStairs.getHeight());

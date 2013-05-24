@@ -254,7 +254,7 @@ public class Explorer
 	{
 		this.game = game;
 		this.position = position;
-		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 16, 20, 17);
+		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 20, 20, 13);
 		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
 		this.speed = speed;	
 		this.texture = new Texture("data/Explorer/explorer.png");

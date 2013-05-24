@@ -51,7 +51,7 @@ public class ExplorerJumpRight extends AnimatedSprite
         else if (x > this.h)
         {
         	this.explorer.getCollisionRectJumpRight().setY(this.collisionRectJumpRightStartY + 15);
-        	this.explorer.getCollisionRectStairs().setX(this.explorer.getPosition().x + 18f);
+        	this.explorer.getCollisionRectStairs().setX(this.explorer.getPosition().x + 18);
         	this.explorer.getCollisionRectStairs().setWidth(1f);
         	this.explorer.getCollisionRectStairs().setHeight(17f);
         }
