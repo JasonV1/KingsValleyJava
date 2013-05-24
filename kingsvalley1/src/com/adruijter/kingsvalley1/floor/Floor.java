@@ -26,7 +26,7 @@ public class Floor
 		this.collisionRectangle = collisionRectangle;
 	}
 	
-	public int getAmountOfBricks()
+	public int getAmountOFBricks()
 	{
 		return this.amountOfBricks;
 	}

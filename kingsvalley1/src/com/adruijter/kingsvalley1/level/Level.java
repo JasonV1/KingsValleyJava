@@ -63,7 +63,7 @@ public class Level {
     public Level(KingsValley1 game, int levelIndex) throws IOException 
 	{
 		this.game = game;
-		this.levelPath = String.format("data/%s.txt", levelIndex);
+		this.levelPath = "data/" + levelIndex + ".txt";
         this.LoadAssets();
         this.stairsRight = new ArrayList<StairsRight>();
         this.stairsLeft = new ArrayList<StairsLeft>();
@@ -120,7 +120,7 @@ public class Level {
 		this.region.put("emptySpace", new TextureRegion(this.spriteSheet, 0,16, 16, 16));
 		this.region.put("trapTopRight01", new TextureRegion(this.spriteSheet,100, 16, 16, 16));
 		this.region.put("trapTopLeft01", new TextureRegion(this.spriteSheet,68, 16, 16, 16));
-		this.region.put("floorTexture16x16", new TextureRegion(this.spriteSheet,32, 0, 16, 16));
+		this.region.put("floorTexture16x16", new TextureRegion(this.spriteSheet,16, 0, 16, 16));
 		this.region.put("trapLeft01", new TextureRegion(this.spriteSheet,68, 0, 16, 16));
 		this.region.put("trapLeft02", new TextureRegion(this.spriteSheet,84, 0, 16, 16));
 		this.region.put("trapTopLeft02", new TextureRegion(this.spriteSheet,84,16, 16, 16));
@@ -129,14 +129,13 @@ public class Level {
 		this.region.put("trapTopRight02", new TextureRegion(this.spriteSheet,116, 16, 16, 16));
 		this.region.put("explorer", new TextureRegion(this.spriteSheet, 0, 36, 144, 32 ));
 		
-		Set<Entry<String, TextureRegion>> t = this.region.entrySet();
-		Iterator<Entry<String, TextureRegion>> it = t.iterator();		
-		while ( it.hasNext())
+				
+		for (Map.Entry<String, TextureRegion> e : this.region.entrySet())
 		{
-			Entry<String, TextureRegion> e = it.next();
-			TextureRegion value = (TextureRegion)e.getValue();
-			value.flip(false, true);			
+			e.getValue().flip(false, true);
 		}
+		
+		
 	}
 	
 	private IBuildingBlock LoadObject(char brickElement, int x, int y)

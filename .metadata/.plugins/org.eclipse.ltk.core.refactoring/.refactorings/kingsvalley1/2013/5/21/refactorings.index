@@ -1,0 +1,5 @@
+1369294291203	Copy compilation unit
+1369294475393	Encapsulate field 'idleLeftNoLineairMovement'
+1369295923864	Encapsulate field 'pixelsInWallLeft'
+1369299773988	Encapsulate field 'collisionRectJumpRight'
+1369300351759	Encapsulate field 'idleFallAfterJump'

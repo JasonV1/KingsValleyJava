@@ -1,8 +1,8 @@
 package com.adruijter.kingsvalley1.explorer;
 
+import com.adruijter.kingsvalley1.KingsValley1;
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.math.Vector2;
-import com.jason.kingsvalley1.KingsValley1;
 
 public class ExplorerJumpRight extends AnimatedSprite
 {
@@ -10,7 +10,7 @@ public class ExplorerJumpRight extends AnimatedSprite
     private Explorer explorer;
     private float startX, startY, a;
     private int startH, startK, h, k;
-
+    private float collisionRectJumpRightStartY;
 
     //Constructor
     public ExplorerJumpRight(Explorer explorer, int h, int k)
@@ -28,6 +28,7 @@ public class ExplorerJumpRight extends AnimatedSprite
         this.startY = this.explorer.getPosition().y;
         this.h = (int)(this.startX + this.startH);
         this.k = (int)(this.startY - this.startK);
+        this.collisionRectJumpRightStartY = this.explorer.getCollisionRectJumpRight().y;
         this.a = this.CalculateA();
     }
 
@@ -40,24 +41,32 @@ public class ExplorerJumpRight extends AnimatedSprite
     {
         float x = this.explorer.getPosition().x + this.explorer.getSpeed();
         float y = (float)(this.a * Math.pow((x - this.h), 2d) + this.k); 
-
         this.explorer.setPosition(new Vector2(x,y));
-        if (ExplorerManager.CollisionDetectionJumpRight())
+        
+        if (x <= this.h)
         {
-            this.explorer.setPosition(new Vector2(x, 
-            									  this.explorer.getCollisionRectStairs().y + 
-            									  this.explorer.getPixelsThroughFloor()));
-           	this.explorer.setState(this.explorer.getWalkRight());
+        	this.explorer.getCollisionRectJumpRight().setY(this.collisionRectJumpRightStartY);
+        }
+        else if (x > this.h)
+        {
+        	this.explorer.getCollisionRectJumpRight().setY(this.collisionRectJumpRightStartY + 15);
         }
         if (ExplorerManager.CollisionDetectionGroundAfterJump())
         {
-        	this.explorer.setPosition(new Vector2(x,
-        								 this.explorer.getCollisionRectStairs().y +
-        								 this.explorer.getPixelsThroughFloor()));
-        	if (KingsValley1.IsAndroid())
-        		this.explorer.setState(this.explorer.getWalkRight());
-        	else
-        		this.explorer.setState(this.explorer.getIdleRight());
+            this.explorer.setPosition(new Vector2(x,
+            									  this.explorer.getCollisionRectStairs().y + 
+            									  this.explorer.getPixelsThroughFloor()));
+           	if (KingsValley1.IsAndroid())
+            this.explorer.setState(this.explorer.getWalkRight());
+           	else
+           	this.explorer.setState(this.explorer.getIdleRight());
+        }
+        
+        if (ExplorerManager.CollisionDetectionJumpRight())
+        {
+        	this.explorer.setPosition(this.explorer.getPosition().add(this.explorer.getPixelsInWallRight(),0f));
+        	this.explorer.getIdleFallAfterJump().Initialize();
+        	this.explorer.setState(this.explorer.getIdleFallAfterJump());
         }
         //base.Update(gameTime);
     }

@@ -21,6 +21,12 @@ public class ExplorerWalkLeft extends AnimatedSprite{
 	
 	public void Update(float delta)
 	{
+		if (ExplorerManager.CollisionDetectionWallInFrontLeft() )
+		{
+			this.explorer.setPosition(this.explorer.getPosition().add(this.explorer.getPixelsInWallLeft(), 0f));
+			this.explorer.setState(this.explorer.getIdleLeftNoLineairMovement());
+		}
+		
 		this.explorer.setPosition(this.explorer.getPosition().
 				add(this.speed, 0f));
 		if ( !Gdx.input.isKeyPressed(Keys.LEFT) && !KingsValley1.IsAndroid())
@@ -38,7 +44,7 @@ public class ExplorerWalkLeft extends AnimatedSprite{
 			
 			this.explorer.setState(this.explorer.getWalkUpStairsLeft());
 		}
-		if (ExplorerManager.CollisionDetectionFallOfFloorLeft())
+		if ( ExplorerManager.CollisionDetectionFallOfFloorLeft())
 		{
 			this.explorer.getFallOfFloorLeft().Initialize();
 			this.explorer.setState(this.explorer.getFallOfFloorLeft());

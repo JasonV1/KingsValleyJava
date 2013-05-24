@@ -1,0 +1,31 @@
+package com.adruijter.kingsvalley1.explorer;
+
+import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
+
+public class ExplorerIdleFallAfterJump extends AnimatedSprite
+{
+	//Fields
+	private Explorer explorer;
+	private float startX, startY, y;
+	private float timer;
+	
+	public ExplorerIdleFallAfterJump(Explorer explorer)
+	{
+		super(explorer);
+		this.explorer = explorer;
+		this.i = 0;
+	}
+	
+	public void Initialize()
+	{
+		this.startX = this.explorer.getPosition().x;
+		this.startY = this.explorer.getPosition().y;
+		this.y = this.startY;
+	}
+	
+	public void Update(float delta)
+	{
+		this.timer += delta;
+		this.y = (float)(1200f * Math.pow(this.timer, 2d)
+	}
+}

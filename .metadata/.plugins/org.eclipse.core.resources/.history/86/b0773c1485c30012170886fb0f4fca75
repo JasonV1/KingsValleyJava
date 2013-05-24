@@ -1,0 +1,13 @@
+package com.adruijter.kingsvalley1.explorer;
+
+import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
+
+public class ExplorerIdleFallAfterJump extends AnimatedSprite
+{
+	public ExplorerIdleFallAfterJump(Explorer explorer)
+	{
+		super(explorer);
+		this.explorer = explorer;
+		this.i = 0;
+	}
+}

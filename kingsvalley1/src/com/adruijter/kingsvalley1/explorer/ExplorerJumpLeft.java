@@ -1,8 +1,8 @@
 package com.adruijter.kingsvalley1.explorer;
 
+import com.adruijter.kingsvalley1.KingsValley1;
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.math.Vector2;
-import com.jason.kingsvalley1.KingsValley1;
 
 public class ExplorerJumpLeft extends AnimatedSprite
 {
@@ -42,21 +42,15 @@ public class ExplorerJumpLeft extends AnimatedSprite
         float x = this.explorer.getPosition().x - this.explorer.getSpeed();
         float y = (float)(this.a * Math.pow((x - this.h), 2d) + this.k);
         this.explorer.setPosition(new Vector2(x, y));
-        if (this.explorer.getPosition().y > this.startY)
-        {
-            this.explorer.setPosition(new Vector2(x, startY));
-            this.explorer.setState(this.explorer.getWalkLeft());
-
-        }
         if (ExplorerManager.CollisionDetectionGroundAfterJump())
         {
-        	this.explorer.setPosition(new Vector2(x,
-        								 this.explorer.getCollisionRectStairs().y +
-        								 this.explorer.getPixelsThroughFloor()));
-        	if (KingsValley1.IsAndroid())
-        		this.explorer.setState(this.explorer.getWalkLeft());
-        	else
-        		this.explorer.setState(this.explorer.getIdleLeft());
+            this.explorer.setPosition(new Vector2(x,
+            									  this.explorer.getCollisionRectStairs().y + 
+            									  this.explorer.getPixelsThroughFloor()));
+           	if (KingsValley1.IsAndroid())
+            this.explorer.setState(this.explorer.getWalkLeft());
+           	else
+           	this.explorer.setState(this.explorer.getIdleLeft());
         }
         //base.Update(gameTime);
     }
@@ -65,5 +59,4 @@ public class ExplorerJumpLeft extends AnimatedSprite
     {
         super.Draw(delta);
     }
-
 }

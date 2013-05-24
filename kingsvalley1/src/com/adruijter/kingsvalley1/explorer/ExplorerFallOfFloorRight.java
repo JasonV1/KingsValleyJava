@@ -8,20 +8,21 @@ import com.badlogic.gdx.math.Vector2;
 
 public class ExplorerFallOfFloorRight extends AnimatedSprite
 {
-  //Fields
+	//Fields
     private Explorer explorer;
     private float startX, startY, a, prev_y;
     private int startH, startK, h, k;
+
 
     //Constructor
     public ExplorerFallOfFloorRight(Explorer explorer, int h, int k)
     {
         super(explorer);
-      this.explorer = explorer;
+    	this.explorer = explorer;
         this.startK = k;
         this.startH = h;
         this.i = 0;
-        this.effect = true;
+        this.effect = false;
     }
 
     public void Initialize()
@@ -44,32 +45,30 @@ public class ExplorerFallOfFloorRight extends AnimatedSprite
         float x = this.explorer.getPosition().x + this.explorer.getSpeed();
         float y = this.explorer.getPosition().y;
         if ( (this.explorer.getPosition().y - this.prev_y)< 10)
-       {
-          this.prev_y = y;
-          y = (float)(this.a * Math.pow((x - this.h), 2d) + this.k);
-          this.explorer.setPosition(new Vector2(x, y));
+        {
+        	this.prev_y = y;
+        	y = (float)(this.a * Math.pow((x - this.h), 2d) + this.k);
+        	this.explorer.setPosition(new Vector2(x, y));
         }
         else
         {
-          this.explorer.setPosition(this.explorer.getPosition().add(0, 10f));
-       }
-        
-        
+        	this.explorer.setPosition(this.explorer.getPosition().add(0, 10f));
+        }     
         
         if (ExplorerManager.CollisionDetectionGroundAfterJump())
         {
             this.explorer.setPosition(new Vector2(x,
-                                this.explorer.getCollisionRectStairs().y + 
-                                this.explorer.getPixelsThroughFloor()));
-             if (KingsValley1.IsAndroid())
+            									  this.explorer.getCollisionRectStairs().y + 
+            									  this.explorer.getPixelsThroughFloor()));
+           	if (KingsValley1.IsAndroid())
             this.explorer.setState(this.explorer.getWalkRight());
-             else
-             this.explorer.setState(this.explorer.getIdleRight());
-       }
-       //base.Update(gameTime);
+           	else
+           	this.explorer.setState(this.explorer.getIdleRight());
+        }
+        //base.Update(gameTime);
     }
 
-   public void Draw(float delta)
+    public void Draw(float delta)
     {
         super.Draw(delta);
     }

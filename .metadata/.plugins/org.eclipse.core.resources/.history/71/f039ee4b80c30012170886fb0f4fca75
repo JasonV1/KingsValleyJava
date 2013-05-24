@@ -1,0 +1,14 @@
+package com.adruijter.kingsvalley1;
+
+import com.adruijter.kingsvalley1.KingsValley1;
+
+public class Main {
+	public static void main(String[] args) {
+		cfg.title = "kingsvalley1";
+		cfg.useGL20 = true;
+		cfg.width = 544;
+		cfg.height = 480;
+
+		new LwjglApplication(new KingsValley1(), cfg);
+	}
+}

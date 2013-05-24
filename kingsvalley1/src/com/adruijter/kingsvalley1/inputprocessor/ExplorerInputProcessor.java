@@ -61,6 +61,10 @@ public class ExplorerInputProcessor implements InputProcessor
 					this.explorer.setState(this.explorer.getWalkDownStairsRight());
 					return true;
 				}
+				else if (this.explorer.getState().equals(this.explorer.getIdleLeftNoLineairMovement()))
+				{
+					this.explorer.setState(this.explorer.getIdleLeft());
+				}
 				break;
 			case Keys.SPACE:
 				if (this.explorer.getState().equals(this.explorer.getWalkRight()))
@@ -105,6 +109,10 @@ public class ExplorerInputProcessor implements InputProcessor
 				else if (this.explorer.getState().equals(this.explorer.getWalkDownStairsLeft()))
 				{
 					this.explorer.setState(this.explorer.getIdleDownStairsLeft());
+				}
+				else if (this.explorer.getState().equals(this.explorer.getIdleRightNoLineairMovement()))
+				{
+					this.explorer.setState(this.explorer.getIdleRight());
 				}
 				break;
 			case Keys.LEFT:
