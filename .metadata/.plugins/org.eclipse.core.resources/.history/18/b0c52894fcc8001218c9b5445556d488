@@ -1,0 +1,13 @@
+package com.jason.kingsvalley1.jewel;
+
+public class Jewel 
+{
+	//Fields
+	private KingsValley1 game
+	
+	//Constructor
+	public Jewel(KingsValley1 game, Vector2 position)
+	{
+		
+	}
+}

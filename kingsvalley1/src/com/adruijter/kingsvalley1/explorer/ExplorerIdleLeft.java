@@ -25,8 +25,15 @@ public class ExplorerIdleLeft extends AnimatedSprite
 	{
 		if ( Gdx.input.isKeyPressed(Keys.LEFT))
 		{
+			//test 21:37 29-5
+			this.explorer.getWalkLeft().Initialize();
 			this.explorer.setState(this.explorer.getWalkLeft());
 		}
+		if ( Gdx.input.isKeyPressed(Keys.RIGHT))
+		{
+			this.explorer.setState(this.explorer.getWalkRight());
+		}
+		
 	}
 	
 	public void Draw(float delta)

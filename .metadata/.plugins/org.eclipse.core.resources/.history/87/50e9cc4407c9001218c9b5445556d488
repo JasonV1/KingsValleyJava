@@ -1,0 +1,31 @@
+package com.jason.kingsvalley1.jewel;
+
+import java.util.ArrayList;
+
+import com.adruijter.kingsvalley1.KingsValley1;
+import com.badlogic.gdx.math.Vector2;
+
+public class Crown 
+{
+	//Fields
+	private KingsValley1 game;
+	private Vector2 position;
+	private ArrayList<Ray> rays;
+	
+	public Crown(KingsValley1 game, Vector2 position)
+	{
+		this.game = game;
+		this.position = position;
+		this.rays = 
+	}
+	
+	public void Update(float delta)
+	{
+		
+	}
+	
+	public void Draw(float delta)
+	{
+		
+	}
+}

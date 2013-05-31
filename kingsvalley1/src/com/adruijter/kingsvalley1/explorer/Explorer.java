@@ -41,7 +41,7 @@ public class Explorer
 	private ExplorerFallOfFloorRight fallOfFloorRight;
 	private ExplorerIdleRightNoLineairMovement idleRightNoLineairMovement;
 	private ExplorerIdleLeftNoLineairMovement idleLeftNoLineairMovement;
-	private Rectangle collisionRectStairs, collisionRectJumpRight;
+	private Rectangle collisionRectStairs, collisionRectJumpRight, collisionRectJumpLeft;
 	private Texture collisionText;
 	private ExplorerIdleFallAfterJump idleFallAfterJump;
 	
@@ -57,8 +57,11 @@ public class Explorer
 		this.collisionRectStairs.x = this.position.x;
 		this.collisionRectStairs.y = this.position.y + 16;
 		this.collisionRectJumpRight.x = this.position.x + 18;
-		this.collisionRectJumpRight.y = this.position.y -2;
+		this.collisionRectJumpRight.y = this.position.y - 2;
+		this.collisionRectJumpLeft.x = this.position.x;
+		this.collisionRectJumpLeft.y = this.position.y - 2;
 	}
+	
 	public float getSpeed()
 	{
 		return this.speed;
@@ -231,17 +234,25 @@ public class Explorer
 	public void setIdleRightNoLineairMovement(ExplorerIdleRightNoLineairMovement idleRightNoLineairMovement) {
 		this.idleRightNoLineairMovement = idleRightNoLineairMovement;
 	}
+	
 	public ExplorerIdleLeftNoLineairMovement getIdleLeftNoLineairMovement() {
 		return idleLeftNoLineairMovement;
 	}
 	public void setIdleLeftNoLineairMovement(ExplorerIdleLeftNoLineairMovement idleLeftNoLineairMovement) {
 		this.idleLeftNoLineairMovement = idleLeftNoLineairMovement;
 	}
+	
 	public Rectangle getCollisionRectJumpRight() {
 		return collisionRectJumpRight;
 	}
 	public void setCollisionRectJumpRight(Rectangle collisionRectJumpRight) {
 		this.collisionRectJumpRight = collisionRectJumpRight;
+	}
+	public Rectangle getCollisionRectJumpLeft() {
+		return collisionRectJumpLeft;
+	}
+	public void setCollisionRectJumpLeft(Rectangle collisionRectJumpLeft) {
+		this.collisionRectJumpLeft = collisionRectJumpLeft;
 	}
 	public ExplorerIdleFallAfterJump getIdleFallAfterJump() {
 		return idleFallAfterJump;
@@ -254,8 +265,9 @@ public class Explorer
 	{
 		this.game = game;
 		this.position = position;
-		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 16, 20, 17);
+		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 15, 20, 18);
 		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
+		this.collisionRectJumpLeft = new Rectangle(this.position.x, this.position.y - 2, 2, 1);
 		this.speed = speed;	
 		this.texture = new Texture("data/Explorer/explorer.png");
 		this.collisionText = new Texture("data/Explorer/collision_text.png");
@@ -263,10 +275,10 @@ public class Explorer
 		this.idleRight = new ExplorerIdleRight(this);
 		this.idleLeft = new ExplorerIdleLeft(this);
 		this.walkLeft = new ExplorerWalkLeft(this);
-		this.jumpRight = new ExplorerJumpRight(this, 20, 32);
-		this.jumpLeft = new ExplorerJumpLeft(this, -20, 32);
-		this.jumpIdleRight = new ExplorerJumpIdleRight(this, 20, 32);
-		this.jumpIdleLeft = new ExplorerJumpIdleLeft(this, 20, 32);
+		this.jumpRight = new ExplorerJumpRight(this, 24, 32);
+		this.jumpLeft = new ExplorerJumpLeft(this, -24, 32);
+		this.jumpIdleRight = new ExplorerJumpIdleRight(this, 24, 32);
+		this.jumpIdleLeft = new ExplorerJumpIdleLeft(this, 24, 32);
 		this.walkUpStairsRight = new ExplorerWalkUpStairsRight(this);
 		this.idleUpStairsRight = new ExplorerIdleUpStairsRight(this);
 		this.idleDownStairsRight = new ExplorerIdleDownStairsRight(this);
@@ -302,13 +314,20 @@ public class Explorer
 	//Draw
 	public void Draw(float delta)
 	{
+		/*
 		this.getGame().getBatch().setColor(1f, 1f, 1f, 1f);
-		//this.game.getBatch().draw(this.collisionText, this.collisionRectStairs.x, this.collisionRectStairs.y, 
-		//		this.collisionRectStairs.getWidth(), this.collisionRectStairs.getHeight());
-		this.game.getBatch().draw(this.collisionText, 
-				this.collisionRectJumpRight.x,
-				this.collisionRectJumpRight.y, 
+		this.game.getBatch().draw(this.collisionText, this.collisionRectStairs.x, this.collisionRectStairs.y, 
 				this.collisionRectStairs.getWidth(), this.collisionRectStairs.getHeight());
+		this.getGame().getBatch().setColor(1f, 0f, 0f, 1f);
+		this.game.getBatch().draw(this.collisionText,
+								  this.collisionRectJumpRight.x,
+												this.collisionRectJumpRight.y, 
+						this.collisionRectJumpRight.getWidth(), this.collisionRectJumpRight.getHeight());
+		this.getGame().getBatch().setColor(1f, 0f, 0f, 1f);
+		this.game.getBatch().draw(this.collisionText,
+								  this.collisionRectJumpLeft.x,
+												this.collisionRectJumpLeft.y, 
+						this.collisionRectJumpLeft.getWidth(), this.collisionRectJumpLeft.getHeight());*/
 		this.getGame().getBatch().setColor(1f, 1f, 1f, 1f);
 		this.state.Draw(delta);		
 	}

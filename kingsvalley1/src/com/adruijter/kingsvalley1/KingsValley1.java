@@ -12,7 +12,7 @@ public class KingsValley1 extends Game {
 	//Fields
 	private SpriteBatch batch;
 	private GameScreen gameScreen;
-	private static boolean isAndroid = true;
+	private static boolean isAndroid = false;
 	
 	//Properties
 	public static boolean IsAndroid()
@@ -51,7 +51,12 @@ public class KingsValley1 extends Game {
 	public void render() {		
 		Gdx.gl.glClearColor(0.06f, 0.06f, 0.06f, 1f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		super.render();
+		
+		for (int i = 0; i < 1000000; i++)
+		{
+			//double x = Math.pow(Math.PI, Math.PI);
+		}
+		super.render();		
 	}
 
 	@Override

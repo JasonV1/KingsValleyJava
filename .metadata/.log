@@ -1,12 +1,12 @@
-!SESSION 2013-05-17 11:07:27.808 -----------------------------------------------
+!SESSION 2013-05-30 08:58:21.902 -----------------------------------------------
 eclipse.buildId=v21.1.0-569685
 java.version=1.7.0_17
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
 Framework arguments:  -product com.android.ide.eclipse.adt.package.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
+Command-line arguments:  -data D:\adtworkspace\KingsValley2 -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
 
-!ENTRY com.android.ide.eclipse.adt 4 0 2013-05-17 11:07:55.131
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-05-30 08:59:06.375
 !MESSAGE 
 !STACK 1
 org.eclipse.core.internal.resources.ResourceException: Resource '/kingsvalley1-android/res' does not exist.
@@ -16,10 +16,10 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/kingsvalley1-a
 	at org.eclipse.core.internal.resources.Container.members(Container.java:249)
 	at com.android.ide.eclipse.adt.internal.sdk.Sdk$6.run(Sdk.java:1306)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
-!SUBENTRY 1 org.eclipse.core.resources 4 368 2013-05-17 11:07:55.135
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2013-05-30 08:59:06.379
 !MESSAGE Resource '/kingsvalley1-android/res' does not exist.
 
-!ENTRY com.google.gdt.eclipse.core 4 0 2013-05-17 11:07:55.174
+!ENTRY com.google.gdt.eclipse.core 4 0 2013-05-30 08:59:06.395
 !MESSAGE Error while tracking project-level changes from a change in R/
 !STACK 1
 Java Model Exception: Java Model Status [Unbound classpath container: 'GWT SDK [missing]' in project 'kingsvalley1-html']
@@ -37,10 +37,10 @@ Java Model Exception: Java Model Status [Unbound classpath container: 'GWT SDK [
 	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2353)
 	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
-!SUBENTRY 1 org.eclipse.jdt.core 4 963 2013-05-17 11:07:55.175
+!SUBENTRY 1 org.eclipse.jdt.core 4 963 2013-05-30 08:59:06.395
 !MESSAGE Unbound classpath container: 'GWT SDK [missing]' in project 'kingsvalley1-html'
 
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-17 11:07:55.926
+!ENTRY org.eclipse.egit.ui 2 0 2013-05-30 08:59:07.568
 !MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
 Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
 The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
@@ -48,42 +48,42 @@ this system level configuration. The Git installation location can be configured
 Team > Git > Configuration preference page's 'System Settings' tab.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-17 11:07:55.929
+!ENTRY org.eclipse.egit.ui 2 0 2013-05-30 08:59:07.572
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\Jason'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
-!ENTRY com.google.gdt.eclipse.suite 1 0 2013-05-17 11:07:56.490
+!ENTRY com.google.gdt.eclipse.core 4 0 2013-05-30 08:59:08.627
+!MESSAGE Error while tracking project-level changes from a change in R/
+!STACK 1
+Java Model Exception: Java Model Status [Unbound classpath container: 'GWT SDK [missing]' in project 'kingsvalley1-html']
+	at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2007)
+	at com.google.gdt.eclipse.core.projects.ProjectChangeTimestampTracker.isResourceInAnOutputPath(ProjectChangeTimestampTracker.java:121)
+	at com.google.gdt.eclipse.core.projects.ProjectChangeTimestampTracker.visitDelta(ProjectChangeTimestampTracker.java:162)
+	at com.google.gdt.eclipse.core.projects.ProjectChangeTimestampTracker.visitDelta(ProjectChangeTimestampTracker.java:169)
+	at com.google.gdt.eclipse.core.projects.ProjectChangeTimestampTracker.resourceChanged(ProjectChangeTimestampTracker.java:181)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:291)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:285)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:149)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:395)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1530)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:45)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.jdt.core 4 963 2013-05-30 08:59:08.628
+!MESSAGE Unbound classpath container: 'GWT SDK [missing]' in project 'kingsvalley1-html'
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2013-05-30 08:59:13.695
 !MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.7.5
 
-!ENTRY com.google.gdt.eclipse.suite 1 0 2013-05-17 11:07:58.694
+!ENTRY com.google.gdt.eclipse.suite 1 0 2013-05-30 08:59:14.913
 !MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.5.0
 
-!ENTRY com.google.gdt.eclipse.core 1 0 2013-05-17 11:07:59.718
+!ENTRY com.google.gdt.eclipse.core 1 0 2013-05-30 08:59:16.745
 !MESSAGE Scheduled rebuild of project kingsvalley1-html because of plugin update (current version: 3.2.0.v201302131858-rel-r42)
-
-!ENTRY com.google.gdt.eclipse.suite.ext 4 2 2013-05-17 11:08:01.407
-!MESSAGE Problems occurred when invoking code from plug-in: "com.google.gdt.eclipse.suite.ext".
-!STACK 0
-java.lang.NoClassDefFoundError: com/google/gdt/eclipse/suite/ext/update/ui/UpdateNotificationToastPopup$NotificationControlSelectedHandler
-	at com.google.gdt.eclipse.suite.ext.update.CompositeArtifactsDowloadJobChangeListener.notifyOfAvailableUpdates(CompositeArtifactsDowloadJobChangeListener.java:271)
-	at com.google.gdt.eclipse.suite.ext.update.CompositeArtifactsDowloadJobChangeListener.done(CompositeArtifactsDowloadJobChangeListener.java:155)
-	at org.eclipse.core.internal.jobs.JobListeners$3.notify(JobListeners.java:39)
-	at org.eclipse.core.internal.jobs.JobListeners.doNotify(JobListeners.java:112)
-	at org.eclipse.core.internal.jobs.JobListeners.done(JobListeners.java:152)
-	at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:647)
-	at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:105)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:70)
-Caused by: java.lang.ClassNotFoundException: com.google.gdt.eclipse.suite.ext.update.ui.UpdateNotificationToastPopup$NotificationControlSelectedHandler
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
-	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	... 8 more
-!SESSION 2013-05-23 08:47:47.459 -----------------------------------------------
+!SESSION 2013-05-31 10:34:02.042 -----------------------------------------------
 eclipse.buildId=v21.1.0-569685
 java.version=1.7.0_17
 java.vendor=Oracle Corporation
@@ -91,7 +91,7 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
 Framework arguments:  -product com.android.ide.eclipse.adt.package.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
 
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-23 08:51:24.877
+!ENTRY org.eclipse.egit.ui 2 0 2013-05-31 10:35:10.210
 !MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
 Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
 The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
@@ -99,76 +99,9 @@ this system level configuration. The Git installation location can be configured
 Team > Git > Configuration preference page's 'System Settings' tab.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-23 08:51:25.938
+!ENTRY org.eclipse.egit.ui 2 0 2013-05-31 10:35:10.274
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\Jason'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY com.google.gdt.eclipse.suite.ext 4 2 2013-05-23 08:51:33.293
-!MESSAGE Problems occurred when invoking code from plug-in: "com.google.gdt.eclipse.suite.ext".
-!STACK 0
-java.lang.NoClassDefFoundError: com/google/gdt/eclipse/suite/ext/update/ui/UpdateNotificationToastPopup$NotificationControlSelectedHandler
-	at com.google.gdt.eclipse.suite.ext.update.CompositeArtifactsDowloadJobChangeListener.notifyOfAvailableUpdates(CompositeArtifactsDowloadJobChangeListener.java:271)
-	at com.google.gdt.eclipse.suite.ext.update.CompositeArtifactsDowloadJobChangeListener.done(CompositeArtifactsDowloadJobChangeListener.java:155)
-	at org.eclipse.core.internal.jobs.JobListeners$3.notify(JobListeners.java:39)
-	at org.eclipse.core.internal.jobs.JobListeners.doNotify(JobListeners.java:112)
-	at org.eclipse.core.internal.jobs.JobListeners.done(JobListeners.java:152)
-	at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:647)
-	at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:105)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:70)
-Caused by: java.lang.ClassNotFoundException: com.google.gdt.eclipse.suite.ext.update.ui.UpdateNotificationToastPopup$NotificationControlSelectedHandler
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
-	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
-	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
-	at java.lang.ClassLoader.loadClass(Unknown Source)
-	... 8 more
-!SESSION 2013-05-24 10:25:45.420 -----------------------------------------------
-eclipse.buildId=v21.1.0-569685
-java.version=1.7.0_17
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
-Framework arguments:  -product com.android.ide.eclipse.adt.package.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
-
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-24 10:26:54.119
-!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
-Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
-The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
-this system level configuration. The Git installation location can be configured on the
-Team > Git > Configuration preference page's 'System Settings' tab.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-24 10:26:54.154
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\Jason'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-!SESSION 2013-05-24 10:28:36.396 -----------------------------------------------
-eclipse.buildId=v21.1.0-569685
-java.version=1.7.0_17
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=nl_NL
-Framework arguments:  -product com.android.ide.eclipse.adt.package.product
-Command-line arguments:  -data D:\adtworkspace\KingsValley2 -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
-
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-24 10:28:45.881
-!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
-Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
-The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
-this system level configuration. The Git installation location can be configured on the
-Team > Git > Configuration preference page's 'System Settings' tab.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY org.eclipse.egit.ui 2 0 2013-05-24 10:28:45.906
-!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
-user global configuration and to define the default location to store repositories: 'C:\Users\Jason'. If this is
-not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
-EGit might behave differently since they see different configuration options.
-This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
-
-!ENTRY com.google.gdt.eclipse.core 2 0 2013-05-24 10:35:50.278
-!MESSAGE Unable to connect to http://dl.google.com/eclipse/plugin/4.2/compositeArtifacts.xml.

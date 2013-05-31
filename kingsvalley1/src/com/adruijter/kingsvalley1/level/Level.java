@@ -25,11 +25,13 @@ import com.adruijter.kingsvalley1.stairsRight.StepRight;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.jewel.Jewel;
 
 public class Level {
 
@@ -43,6 +45,7 @@ public class Level {
     private ArrayList<StairsRight> stairsRight;
     private ArrayList<StairsLeft> stairsLeft;
     private ArrayList<Floor> floors;
+    private ArrayList<Jewel> jewels;
     private ExplorerInputProcessor input;
     private ExplorerGestureListener gesture;
     private InputMultiplexer multiplexer;
@@ -58,12 +61,17 @@ public class Level {
 	public void setExplorer(Explorer explorer) {
 		this.explorer = explorer;
 	}
+	
+	public Map<String, TextureRegion> getRegion() {
+		return region;
+	}
     
     //Constructor
     public Level(KingsValley1 game, int levelIndex) throws IOException 
 	{
 		this.game = game;
 		this.levelPath = "data/" + levelIndex + ".txt";
+		this.jewels = new ArrayList<Jewel>();
         this.LoadAssets();
         this.stairsRight = new ArrayList<StairsRight>();
         this.stairsLeft = new ArrayList<StairsLeft>();
@@ -129,6 +137,12 @@ public class Level {
 		this.region.put("trapTopRight02", new TextureRegion(this.spriteSheet,116, 16, 16, 16));
 		this.region.put("explorer", new TextureRegion(this.spriteSheet, 0, 36, 144, 32 ));
 		
+		//Jewel textureregions
+		this.region.put("jewel", new TextureRegion(this.spriteSheet, 32, 80, 16, 16));
+		this.region.put("crownpartleft", new TextureRegion(this.spriteSheet, 54, 80, 16, 16));
+		this.region.put("crownPartMiddle", new TextureRegion(this.spriteSheet, 80, 80, 16, 16));
+		this.region.put("crownPartRight", new TextureRegion(this.spriteSheet, 112, 80, 16, 16));
+		//Einde jewel textureregion 30-5 9:38
 				
 		for (Map.Entry<String, TextureRegion> e : this.region.entrySet())
 		{
@@ -151,9 +165,21 @@ public class Level {
             case '3':
                 return new Brick(this.game, new Vector2(x, y), this.region.get("emptySpace"), '3');
             case '+':
-            	float speed = (KingsValley1.IsAndroid()) ? 2f : 1.5f;
+            	float speed = (KingsValley1.IsAndroid()) ? 1.5f : 1.5f;
             	this.explorer = new Explorer(this.game, new Vector2(x, y), speed);                 
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '+');
+            case 'g':
+            	this.jewels.add(new Jewel(this.game, new Vector2(x, y), new Color(0.125f, 0.847f, 0.125f, 1f)));
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), 'g');
+            case 'b':
+            	this.jewels.add(new Jewel(this.game, new Vector2(x, y), new Color(0.125f, 0.125f, 0.968f, 1f)));
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), 'b');
+            case 'r':
+            	this.jewels.add(new Jewel(this.game, new Vector2(x, y), new Color(0.847f, 0.282f, 176f, 255f)));
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), 'r');
+            case 't':
+            	this.jewels.add(new Jewel(this.game, new Vector2(x, y), new Color(62f, 216f, 247f, 255f)));
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), 't');
             case 's':
                 return new StepRight(this.game, new Vector2(x, y), this.region.get("trapTopRight01"), 's');
             case 'x':
@@ -259,6 +285,7 @@ public class Level {
 		{
 			this.explorer.Update(delta);
 		}
+		//Gdx.app.log("state: ", this.explorer.getState().toString());
     }
 
     public void Draw(float delta)
@@ -288,13 +315,18 @@ public class Level {
             stair.Draw(delta);
         }
         
-        if (ExplorerManager.Debug())
-        {
+        //if (ExplorerManager.Debug())
+        //{
 	        for (Floor floor : this.floors)
 	        {
-	        	floor.Draw(delta);
+	        	//floor.Draw(delta);
 	        }
-        }
+        //}
+	        
+	    for (Jewel jewel : this.jewels)
+	    {
+	    	jewel.Draw(delta);
+	    }
         
     
         if (this.explorer != null)

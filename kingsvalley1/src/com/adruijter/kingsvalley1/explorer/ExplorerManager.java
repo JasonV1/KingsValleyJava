@@ -6,6 +6,7 @@ import com.adruijter.kingsvalley1.floor.Floor;
 import com.adruijter.kingsvalley1.stairsRight.StairsRight;
 import com.adruijter.kingsvalley1.stairsLeft.StairsLeft;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 public class ExplorerManager
@@ -59,7 +60,7 @@ public class ExplorerManager
                 else if(explorer.getState().equals(explorer.getWalkDownStairsRight()))
                 {
                     int offset = 0;
-                    if ((explorer.getCollisionRectStairs().y > stairs.getCollisionRectBottom().y + offset - 2) &&
+                    if ((explorer.getCollisionRectStairs().y > stairs.getCollisionRectBottom().y + offset - 3) &&
                         (explorer.getCollisionRectStairs().y < stairs.getCollisionRectBottom().y + offset + 5))
                     {
                     	explorer.setPosition( new Vector2(explorer.getPosition().x, stairs.getCollisionRectBottom().y - stairs.getCollisionRectBottom().height ));
@@ -182,7 +183,7 @@ public class ExplorerManager
 	    							 explorer.getCollisionRectStairs().y - 
 	    							 explorer.getCollisionText().getHeight() + 3;
 	    			// Geef deze waarde door aan de console voor debuggen...
-    				Gdx.app.log("diff", Float.toString(pixelsThroughFloor));
+    				//Gdx.app.log("diff", Float.toString(pixelsThroughFloor));
 	    			//Geef deze waarde door aan het veld setPixelsThroughFloor van de explorer class
     				explorer.setPixelsThroughFloor(pixelsThroughFloor);
 	    			/* Bevestig dat er een botsing heeft plaatsgevonden tussen de explorer en de vloer
@@ -200,7 +201,7 @@ public class ExplorerManager
     	{
 	    		if ( explorer.getCollisionRectStairs().overlaps(floor.getCollisionRectangle()))
 	    		{
-	    			if (explorer.getCollisionRectStairs().x + 14 < floor.getCollisionRectangle().x)
+	    			if (explorer.getCollisionRectStairs().x + explorer.getCollisionRectStairs().getWidth() - 8 < floor.getCollisionRectangle().x)
 	    			{
 	    				return true;
 	    			}	    			
@@ -219,10 +220,11 @@ public class ExplorerManager
 	    		{
 	    			//als de linkerkant + 2 van de explorer rectangle groter is dan de linkerkant van de
     				//floor rectangle dan moet je true teruggeven
-    				if (explorer.getCollisionRectStairs().x + 2 > 
+    				if (explorer.getCollisionRectStairs().x + 4 > 
     					(floor.getCollisionRectangle().x + floor.getCollisionRectangle().getWidth()))
 	    			{
-	    				return true;
+    					floor.setColor(new Color(0f,1f,0f,1f));
+    					return true;
 	    			}	    			
 	    		}  
     	}
@@ -235,10 +237,10 @@ public class ExplorerManager
     	{
     		if (explorer.getCollisionRectStairs().overlaps(floor.getCollisionRectangle()))
     		{    				
-				if ((explorer.getPosition().x + explorer.getCollisionRectStairs().getWidth()) >
+				if ((explorer.getCollisionRectStairs().x + explorer.getCollisionRectStairs().getWidth()) >
 					 floor.getCollisionRectangle().x) 
 				{
-					if ((explorer.getPosition().x + explorer.getCollisionRectStairs().getWidth()) < 
+					if ((explorer.getCollisionRectStairs().x + explorer.getCollisionRectStairs().getWidth()) < 
 			    		(floor.getCollisionRectangle().x  + floor.getCollisionRectangle().getWidth()))
 					{
 						if ((explorer.getPosition().y + 2 * explorer.getCollisionRectStairs().getHeight()) >
@@ -246,7 +248,7 @@ public class ExplorerManager
 						{
 							float inWall = floor.getCollisionRectangle().x - (explorer.getCollisionRectStairs().x +
 										 explorer.getCollisionRectStairs().getWidth());
-							explorer.setPixelsInWallRight(inWall - 4);
+							explorer.setPixelsInWallRight(inWall);
 							return true;
 						}
 					}    					
@@ -258,22 +260,25 @@ public class ExplorerManager
     
     public static boolean CollisionDetectionWallInFrontLeft()
     {
+    	//Kijk voor iedere floor.....
     	for (Floor floor : floors)
     	{
+    		//Of er overlop is tussen de collisionrectangle van de explorer en een specifieke floor....
     		if (explorer.getCollisionRectStairs().overlaps(floor.getCollisionRectangle()))
     		{    				
-				if ((explorer.getPosition().x < floor.getCollisionRectangle().x +
+				//Check of de 
+    			if ((explorer.getCollisionRectStairs().x < floor.getCollisionRectangle().x + 
 						floor.getCollisionRectangle().getWidth()))
 				{
-					if (explorer.getPosition().x > floor.getCollisionRectangle().x)
+					if (explorer.getCollisionRectStairs().x > floor.getCollisionRectangle().x)
 					{
 						if ((explorer.getPosition().y + 2 * explorer.getCollisionRectStairs().getHeight()) >
 		    				(floor.getCollisionRectangle().y + floor.getCollisionRectangle().getHeight()))
 						{
 							float inWall = ((floor.getCollisionRectangle().x + 
 													floor.getCollisionRectangle().getWidth()) -
-														(explorer.getCollisionRectStairs().x));
-							explorer.setPixelsInWallRight(inWall + 4);
+														explorer.getCollisionRectStairs().x);
+							explorer.setPixelsInWallLeft(inWall);
 							return true;
 						}
 					}    					
@@ -295,6 +300,22 @@ public class ExplorerManager
     			return true;
     		}
     	}
+    	
+    	return false;
+    }
+    
+    public static boolean CollisionDetectionJumpLeft()
+    {
+    	for (Floor floor : floors)
+    	{
+    		if (explorer.getCollisionRectJumpLeft().overlaps(floor.getCollisionRectangle()))
+    		{
+    			float inWall = (floor.getCollisionRectangle().x + floor.getCollisionRectangle().getWidth()) - explorer.getCollisionRectJumpLeft().x;
+    			explorer.setPixelsInWallLeft(inWall);
+    			return true;
+    		}
+    	}
+    	
     	return false;
     }
     

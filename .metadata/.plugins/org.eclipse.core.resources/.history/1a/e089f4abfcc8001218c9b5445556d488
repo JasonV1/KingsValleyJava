@@ -1,0 +1,17 @@
+package com.jason.kingsvalley1.jewel;
+
+import com.adruijter.kingsvalley1.KingsValley1;
+import com.badlogic.gdx.math.Vector2;
+
+public class Jewel 
+{
+	//Fields
+	private KingsValley1 game;
+	private Vector2 position;
+	
+	//Constructor
+	public Jewel(KingsValley1 game, Vector2 position)
+	{
+		
+	}
+}
