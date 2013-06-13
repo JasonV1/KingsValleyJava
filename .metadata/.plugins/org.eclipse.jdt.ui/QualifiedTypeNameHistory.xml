@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.KingsValley1"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.badlogic.gdx.graphics.g2d.TextureRegion"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="com.badlogic.gdx.graphics.Color"/>
 <fullyQualifiedTypeName name="com.badlogic.gdx.Gdx"/>
 <fullyQualifiedTypeName name="com.jason.kingsvalley1.jewel.Jewel"/>
@@ -13,4 +12,7 @@
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.brick.Image"/>
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.brick.IBuildingBlock"/>
 <fullyQualifiedTypeName name="com.badlogic.gdx.math.Vector2"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite"/>
 </qualifiedTypeNameHistroy>

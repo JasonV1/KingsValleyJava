@@ -55,9 +55,15 @@ public class Level {
     private Map<String, TextureRegion> region;
     private Music masterMelody;
     private ArrayList<Character> score;
-	
-	
+    private ArrayList<Character> highScore;
+
+
     //Properties
+    public KingsValley1 getGame()
+    {
+    	return this.game;
+    }
+    
     public Explorer getExplorer() {
 		return explorer;
 	}
@@ -65,26 +71,35 @@ public class Level {
 	public void setExplorer(Explorer explorer) {
 		this.explorer = explorer;
 	}
-	
-	public Map<String, TextureRegion> getRegion() {
+    
+    public Map<String, TextureRegion> getRegion() {
 		return region;
 	}
-	
-	public ArrayList<Character> getScore() {
+    
+    public ArrayList<Character> getScore() {
 		return score;
 	}
 
 	public void setScore(ArrayList<Character> score) {
 		this.score = score;
 	}
-    
-    //Constructor
+
+	public ArrayList<Character> getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(ArrayList<Character> highScore) {
+		this.highScore = highScore;
+	}
+
+	//Constructor
     public Level(KingsValley1 game, int levelIndex) throws IOException 
 	{
 		this.game = game;
 		this.levelPath = "data/" + levelIndex + ".txt";
 		this.jewels = new ArrayList<Jewel>();
-        this.score = new ArrayList<Character>();
+		this.score = new ArrayList<Character>();
+		this.highScore = new ArrayList<Character>();
         this.LoadAssets();
         this.stairsRight = new ArrayList<StairsRight>();
         this.stairsLeft = new ArrayList<StairsLeft>();
@@ -102,10 +117,11 @@ public class Level {
         ExplorerManager.setStairsLeft(this.stairsLeft);
         ExplorerManager.setFloors(this.floors);
         ExplorerManager.setJewels(this.jewels);
+        
         this.masterMelody = Gdx.audio.newMusic(Gdx.files.internal("data/Sound/masterMelody.mp3"));
         this.masterMelody.play();
         this.masterMelody.setLooping(true);
-        this.masterMelody.setVolume(0.1f);
+        this.masterMelody.setVolume(0.6f);
 	}
 
 	private void LoadAssets() throws IOException 
@@ -134,7 +150,7 @@ public class Level {
         }
         reader.close();
 	}
-	
+
 	private void DefineTextureRegions()
 	{
 		this.spriteSheet = new Texture("data/SpriteSheet.png");
@@ -155,13 +171,24 @@ public class Level {
 		this.region.put("trapTopRight02", new TextureRegion(this.spriteSheet,116, 16, 16, 16));
 		this.region.put("explorer", new TextureRegion(this.spriteSheet, 0, 36, 144, 32 ));
 		
+		//Explorer textureregions
+		this.region.put("explorer0", new TextureRegion(this.spriteSheet, 0, 36, 18, 32));
+		this.region.put("explorer1", new TextureRegion(this.spriteSheet, 18, 36, 18, 32));
+		this.region.put("explorer2", new TextureRegion(this.spriteSheet, 36, 36, 18, 32));
+		this.region.put("explorer3", new TextureRegion(this.spriteSheet, 54, 36, 18, 32));
+		this.region.put("explorer4", new TextureRegion(this.spriteSheet, 72, 36, 18, 32));
+		this.region.put("explorer5", new TextureRegion(this.spriteSheet, 90, 36, 18, 32));
+		this.region.put("explorer6", new TextureRegion(this.spriteSheet, 108, 36, 18, 32));
+		this.region.put("explorer7", new TextureRegion(this.spriteSheet, 126, 36, 18, 32));
+
 		//Jewel textureregions
 		this.region.put("jewel", new TextureRegion(this.spriteSheet, 16, 80, 16, 16));
-		this.region.put("crownPartLeft",  new TextureRegion(this.spriteSheet, 112, 80, 16, 16));
-		this.region.put("crownPartMiddle", new TextureRegion(this.spriteSheet, 80, 80, 16, 16));
 		this.region.put("crownPartRight", new TextureRegion(this.spriteSheet, 48, 80, 16, 16));
-		//Einde jewel textureregion 30-5 9:38
-		
+		this.region.put("crownPartMiddle", new TextureRegion(this.spriteSheet, 80, 80, 16, 16));
+		this.region.put("crownPartLeft",  new TextureRegion(this.spriteSheet, 112, 80, 16, 16));
+		//einde jewel textureregion 30-5 9:38
+
+		//Characters
 		this.region.put("c", new TextureRegion(this.spriteSheet, 80, 128, 16, 16));
 		this.region.put("K", new TextureRegion(this.spriteSheet, 128, 112, 16, 16));
 		this.region.put("O", new TextureRegion(this.spriteSheet, 32, 128, 16, 16));
@@ -183,6 +210,7 @@ public class Level {
 
 		//Numbers
 		this.region.put("0", new TextureRegion(this.spriteSheet, 0, 96, 16, 16));
+		this.region.put("1", new TextureRegion(this.spriteSheet, 16, 96, 16, 16));
 		this.region.put("2", new TextureRegion(this.spriteSheet, 32, 96, 16, 16));
 		this.region.put("3", new TextureRegion(this.spriteSheet, 48, 96, 16, 16));
 		this.region.put("4", new TextureRegion(this.spriteSheet, 64, 96, 16, 16));
@@ -191,23 +219,24 @@ public class Level {
 		this.region.put("7", new TextureRegion(this.spriteSheet, 112, 96, 16, 16));
 		this.region.put("8", new TextureRegion(this.spriteSheet, 128, 96, 16, 16));
 		this.region.put("9", new TextureRegion(this.spriteSheet, 0, 112, 16, 16));
-				
+
+
 		for (Map.Entry<String, TextureRegion> e : this.region.entrySet())
 		{
 			e.getValue().flip(false, true);
 		}
-		
-		
+
+
 	}
-	
+
 	private IBuildingBlock LoadObject(char brickElement, int x, int y)
 	{
 		switch (brickElement)
         {
             case '.':
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');
-            case '1':
-            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick"), '1');
+            case '|':
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick"), '|');
             case '}':
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick"), '}');
             case ']':
@@ -216,13 +245,13 @@ public class Level {
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick"), '{');
             case '[':
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick"), '[');
-            case '2':
-                return new Brick(this.game, new Vector2(x, y), this.region.get("fundament"), '2');
+            case '=':
+                return new Brick(this.game, new Vector2(x, y), this.region.get("fundament"), '=');
             case '3':
                 return new Brick(this.game, new Vector2(x, y), this.region.get("emptySpace"), '3');
             case '+':
             	float speed = (KingsValley1.IsAndroid()) ? 1.5f : 1.5f;
-            	this.explorer = new Explorer(this.game, new Vector2(x, y), speed);                 
+            	this.explorer = new Explorer(this.game, new Vector2(x, y), speed, this.region);                 
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '+');
             case 'g':
             	this.jewels.add(new Jewel(this.game, new Vector2(x, y), new Color(0.125f, 0.847f, 0.125f, 1f ), this.region));
@@ -240,7 +269,7 @@ public class Level {
                 return new StepRight(this.game, new Vector2(x, y), this.region.get("trapTopRight01"), 's');
             case 'x':
                 return new StepLeft(this.game, new Vector2(x, y), this.region.get("trapTopLeft01"), 'x');
-            //Characters 
+            //Characters   
             case 'C':
             	return new Character(this.game, new Vector2(x, y), this.region.get("C"), 'C');
             case 'K':
@@ -294,15 +323,18 @@ public class Level {
             case '8':
             	return new Character(this.game, new Vector2(x, y), this.region.get("8"), '8');	
             case '9':
-            	return new Character(this.game, new Vector2(x, y), this.region.get("9"), '9');
+            	return new Character(this.game, new Vector2(x, y), this.region.get("9"), '9');	
             case '/':
             	this.score.add(new Character(this.game, new Vector2(x, y), this.region.get("0"), '/'));
-            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');	
+            case '!':
+            	this.highScore.add(new Character(this.game, new Vector2(x, y), this.region.get("0"), '!'));
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');	
             default:
                 return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');
         }
 	}
-	
+
 	private void DetectFloors()
 	{
 		for ( int i = 0; i < this.height; i++)
@@ -311,7 +343,7 @@ public class Level {
 			Vector2 position = Vector2.Zero;
 			for (int j = 0; j < this.width; j++)
 			{
-				if ( this.bricks[j][i].getCharacter() == '1' ||
+				if ( this.bricks[j][i].getCharacter() == '|' ||
 					 this.bricks[j][i].getCharacter() == 's' ||
 					 this.bricks[j][i].getCharacter() == 'x' ||
 					 this.bricks[j][i].getCharacter() == '3' ||
@@ -344,7 +376,7 @@ public class Level {
 			}
 		}
 	}
-	
+
 	public void DetectStairsRight()
      {
          for (int i = 0; i < this.height; i++)
@@ -358,7 +390,7 @@ public class Level {
                      for (int k = (i + 1); k < this.height; k++)
                      {
                          horizontal--;
-                         if (this.bricks[horizontal][k].getCharacter() == '1')
+                         if (this.bricks[horizontal][k].getCharacter() == '|')
                          {
                              amountOfStairs = k - i - 1;
                              break;
@@ -370,7 +402,7 @@ public class Level {
              }
          }
      }
-	 
+
 	 private void DetectStairsLeft()
      {
          for (int i = 0; i < this.height; i++)
@@ -384,7 +416,7 @@ public class Level {
                      for (int k = (i + 1); k < this.height; k++)
                      {
                          horizontal++;
-                         if (this.bricks[horizontal][k].getCharacter() == '1')
+                         if (this.bricks[horizontal][k].getCharacter() == '|')
                          {
                              amountOfStairs = k - i - 1;
                              break;
@@ -396,7 +428,7 @@ public class Level {
              }
          }
      }
-	
+
 	public void Update(float delta)
     {
 		if (this.explorer != null)
@@ -407,6 +439,7 @@ public class Level {
 		{
 			jewel.Update(delta);
 		}
+		ExplorerManager.setLevel(this);
 		//Gdx.app.log("state: ", this.explorer.getState().toString());
     }
 
@@ -430,7 +463,7 @@ public class Level {
         for (StairsRight stair : this.stairsRight)
         {
             stair.Draw(delta);
-        }
+        };
         
         for (StairsLeft stair : this.stairsLeft)
         {
@@ -444,15 +477,21 @@ public class Level {
 	        	//floor.Draw(delta);
 	        }
         //}
-	        
+
 	    for (Jewel jewel : this.jewels)
 	    {
 	    	jewel.Draw(delta);
 	    }
-	    
+
 	    for (Character character : this.score)
 	    {
-	    	this.game.getBatch().setColor(1f, 1f, 1f, 1f);
+	    	this.game.getBatch().setColor(1f,1f,1f,1f);
+	    	character.Draw(delta);
+	    }
+	    
+	    for (Character character : this.highScore)
+	    {
+	    	this.game.getBatch().setColor(1f,1f,1f,1f);
 	    	character.Draw(delta);
 	    }
         
@@ -462,6 +501,4 @@ public class Level {
             this.explorer.Draw(delta);
         }
     }
-
-	
 }

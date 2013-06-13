@@ -3,12 +3,14 @@ package com.adruijter.kingsvalley1.explorer;
 import java.util.ArrayList;
 
 import com.adruijter.kingsvalley1.floor.Floor;
+import com.jason.kingsvalley1.jewel.Jewel;
+import com.adruijter.kingsvalley1.level.Level;
+import com.jason.kingsvalley1.score.Score;
 import com.adruijter.kingsvalley1.stairsRight.StairsRight;
 import com.adruijter.kingsvalley1.stairsLeft.StairsLeft;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.jason.kingsvalley1.jewel.Jewel;
 
 public class ExplorerManager
 {
@@ -19,8 +21,14 @@ public class ExplorerManager
     private static ArrayList<Floor> floors;
     private static ArrayList<Jewel> jewels;
     private static boolean debug = false;
+    private static Level level;
 
     //Properties
+    public static void setLevel(Level level)
+    {
+    	ExplorerManager.level = level;
+    }
+    
     public static boolean Debug()
     {
     	return debug;
@@ -41,10 +49,12 @@ public class ExplorerManager
 	public static void setFloors(ArrayList<Floor> floors) {
 		ExplorerManager.floors = floors;
 	}
-	
-	public static void setJewels(ArrayList<Jewel> jewels){
+
+	public static void setJewels(ArrayList<Jewel> jewels) {
 		ExplorerManager.jewels = jewels;
 	}
+
+
 	public static boolean CollisionDetectionBottomStairsRight()
     {
         for (StairsRight stairs : stairsRight)
@@ -210,11 +220,11 @@ public class ExplorerManager
 	    			{
 	    				if (floor.getHighOrLowFallLeft() == '{')
     					{
-    						explorer.getFallOfHighFloorSound().play(1.0f);
+    						explorer.getFallOfHighFloorSound().play(0.6f);
     					}
     					else if (floor.getHighOrLowFallLeft() == '[')
     					{
-    						explorer.getFallOfLowFloorSound().play(1.0f);
+    						explorer.getFallOfLowFloorSound().play(0.6f);
     					}
 	    				return true;
 	    			}	    			
@@ -239,11 +249,11 @@ public class ExplorerManager
     					floor.setColor(new Color(0f,1f,0f,1f));
     					if (floor.getHighOrLowFallRight() == '}')
     					{
-    						explorer.getFallOfHighFloorSound().play(1.0f);
+    						explorer.getFallOfHighFloorSound().play(0.6f);
     					}
     					else if (floor.getHighOrLowFallRight() == ']')
     					{
-    						explorer.getFallOfLowFloorSound().play(1.0f);
+    						explorer.getFallOfLowFloorSound().play(0.6f);
     					}
     					return true;
 	    			}	    			
@@ -342,11 +352,15 @@ public class ExplorerManager
     
     public static boolean CollisionDetectionExplorerJewels()
     {
-    	for (Jewel jewel : jewels )
+    	for (Jewel jewel : jewels)
     	{
     		if (explorer.getCollisionRectStairs().overlaps(jewel.getCollisionRectangle()))
     		{
     			jewels.remove(jewel);
+    			Score.setGameScore(Score.getGameScore() + 500);
+    			Score.setHighScore(Score.getHighScore() + 500);
+    			Score.AdjustScore(level);
+    			Score.AdjustHighScore(level);
     			return true;
     		}
     	}

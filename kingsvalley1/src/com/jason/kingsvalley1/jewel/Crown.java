@@ -29,19 +29,19 @@ public class Crown
 		this.rays.add(new Ray(this.game, new Vector2(0f, -16f).add(this.position), region.get("crownPartMiddle")));
 		this.rays.add(new Ray(this.game, new Vector2(16f, 0f).add(this.position), region.get("crownPartRight")));
 		this.colors = new HashMap<String, Color>();
-		this.colors.put("white", new Color(0.969f, 0.969f, 0.969f, 1f));
-		this.colors.put("yellow", new Color(0.847f, 0.847f, 0.690f, 1f));
-		this.colors.put("transparant", new Color(0.847f, 0.847f, 0.690f, 0f));
+		this.colors.put("white", new Color(0.969f, 0.969f,0.969f, 1f));
+		this.colors.put("yellow", new Color(0.847f, 0.847f, 0.125f, 1f ));
+		this.colors.put("transparant", new Color(0.847f, 0.847f, 0.125f, 0f ));
+		this.color = this.colors.get("white");
 	}
 
 	public void Update(float delta)
 	{
-		
 		this.timer += delta * 40;
-		
-		if (this.timer < 2f)
+
+		if (this.timer <  2f)
 		{
-			this.color = this.colors.get("transparant");
+			this.color = this.colors.get("transparant");		
 		}
 		else if (this.timer < 4)
 		{
@@ -49,15 +49,11 @@ public class Crown
 		}
 		else if (this.timer < 8)
 		{
-			this.color = this.colors.get("yellow");
-		}
+			this.color = this.colors.get("yellow");		}
 		else
 		{
 			this.timer = 0f;
 		}
-		
-		
-		//Gdx.app.log("timer ", Float.toString(switcher));
 	}
 
 	public void Draw(float delta)

@@ -2,6 +2,8 @@ package com.adruijter.kingsvalley1.explorer;
 
 
 
+import java.util.Map;
+
 import com.adruijter.kingsvalley1.KingsValley1;
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.Gdx;
@@ -46,6 +48,8 @@ public class Explorer
 	private Texture collisionText;
 	private ExplorerIdleFallAfterJump idleFallAfterJump;
 	private Sound pickUpJewelSound, fallOfHighFloorSound, fallOfLowFloorSound;
+	private Map<String, TextureRegion> region;
+	private ExplorerStart start;
 	
 	
 	//Properties
@@ -268,11 +272,24 @@ public class Explorer
 	public Sound getFallOfLowFloorSound() {
 		return fallOfLowFloorSound;
 	}
+	public Map<String, TextureRegion> getRegion() {
+		return region;
+	}
+	public void setRegion(Map<String, TextureRegion> region) {
+		this.region = region;
+	}
+	public ExplorerStart getStart() {
+		return start;
+	}
+	public void setStart(ExplorerStart start) {
+		this.start = start;
+	}
 	//Constructor
-	public Explorer(KingsValley1 game, Vector2 position, float speed)
+	public Explorer(KingsValley1 game, Vector2 position, float speed, Map<String, TextureRegion> region)
 	{
 		this.game = game;
 		this.position = position;
+		this.setRegion(region);
 		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 15, 20, 18);
 		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
 		this.collisionRectJumpLeft = new Rectangle(this.position.x, this.position.y - 2, 2, 1);
@@ -300,6 +317,7 @@ public class Explorer
 		this.idleRightNoLineairMovement = new ExplorerIdleRightNoLineairMovement(this);
 		this.idleLeftNoLineairMovement = new ExplorerIdleLeftNoLineairMovement(this);
 		this.idleFallAfterJump = new ExplorerIdleFallAfterJump(this);
+		this.start = new ExplorerStart(this);
 		//Sounds
 		this.pickUpJewelSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/pickUpJewel.mp3"));
 		this.fallOfHighFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfHighFloor.mp3"));

@@ -1,0 +1,24 @@
+package com.adruijter.kingsvalley1.explorer;
+
+import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
+
+public class ExplorerStart extends AnimatedSprite {
+
+	public ExplorerStart(Explorer explorer) 
+	{
+		super(explorer);
+		this.effect = true;
+		this.i = 7;
+		this.explorer.getPosition().add()
+	}
+
+	public void Update(float delta)
+	{
+		
+	}
+	
+	public void Draw(float delta)
+	{
+		super.Draw(delta);
+	}
+}
