@@ -11,6 +11,9 @@ d:data/Explorer
 i:data/Explorer/collision_text.png
 i:data/Explorer/explorer.png
 i:data/libgdx.png
+d:data/Sound
+a:data/Sound/masterMelody.mp3
+a:data/Sound/pickUpJewel.mp3
 i:data/SpriteSheet.png
 d:data/Stairs
 i:data/Stairs/collision_text.png

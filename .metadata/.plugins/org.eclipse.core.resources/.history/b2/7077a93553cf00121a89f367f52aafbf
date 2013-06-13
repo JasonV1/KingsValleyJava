@@ -1,0 +1,31 @@
+package com.jason.kingsvalley1.score;
+
+import com.adruijter.kingsvalley1.level.Level;
+import com.jason.kingsvalley1.character.Character;
+
+public class Score 
+{
+	private static int gameScore;
+
+	public static int getGameScore() {
+		return gameScore;
+	}
+
+	public static void setGameScore(int gameScore) {
+		Score.gameScore = gameScore;
+	}
+	
+	public static void AdjustScore(Level level)
+	{
+		String theScore = Integer.toString(gameScore);
+		
+		//Bepaal het verschil in lengte tussen de twee array's
+		int diff = level.getScore().size() - theScore.length();
+		
+		//We bouwen nu het scorebord op van links naar rechts
+		for (int i = 0; i < diff; i++)
+		{
+			level.getScore().get(i).getCharacter();
+		}
+	}
+}

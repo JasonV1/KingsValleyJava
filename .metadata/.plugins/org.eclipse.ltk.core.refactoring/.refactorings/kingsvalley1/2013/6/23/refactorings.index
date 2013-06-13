@@ -1,0 +1,11 @@
+1370502179494	Encapsulate field 'collisionRectangle'
+1370505361143	Encapsulate field 'fallOfHighFloor'
+1370505369623	Encapsulate field 'fallOfLowFloor'
+1370505683651	Encapsulate field 'highOrLowFallRight'
+1370505689280	Encapsulate field 'highOrLowFallLeft'
+1370506032827	Rename field 'fallOfHighFloor'
+1370506049136	Rename field 'fallOfLowFloor'
+1370510868539	Delete element
+1370510983085	Copy compilation unit
+1370511063417	Rename type 'Brick'
+1370595591310	Encapsulate field 'gameScore'

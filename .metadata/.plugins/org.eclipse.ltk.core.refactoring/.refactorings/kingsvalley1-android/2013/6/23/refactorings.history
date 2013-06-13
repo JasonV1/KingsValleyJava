@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Sound&apos; to &apos;data&apos;&#x0D;&#x0A;- Original project: &apos;kingsvalley1-android&apos;&#x0D;&#x0A;- Destination element: &apos;data&apos;&#x0D;&#x0A;- Original element: &apos;Sound&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move folder" element1="assets/Sound" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1370503016254" target="assets/data" units="0" version="1.0"/>
+</session>

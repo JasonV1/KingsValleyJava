@@ -5,6 +5,7 @@ package com.adruijter.kingsvalley1.explorer;
 import com.adruijter.kingsvalley1.KingsValley1;
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -44,6 +45,7 @@ public class Explorer
 	private Rectangle collisionRectStairs, collisionRectJumpRight, collisionRectJumpLeft;
 	private Texture collisionText;
 	private ExplorerIdleFallAfterJump idleFallAfterJump;
+	private Sound pickUpJewelSound, fallOfHighFloorSound, fallOfLowFloorSound;
 	
 	
 	//Properties
@@ -260,6 +262,12 @@ public class Explorer
 	public void setIdleFallAfterJump(ExplorerIdleFallAfterJump idleFallAfterJump) {
 		this.idleFallAfterJump = idleFallAfterJump;
 	}
+	public Sound getFallOfHighFloorSound() {
+		return fallOfHighFloorSound;
+	}
+	public Sound getFallOfLowFloorSound() {
+		return fallOfLowFloorSound;
+	}
 	//Constructor
 	public Explorer(KingsValley1 game, Vector2 position, float speed)
 	{
@@ -292,6 +300,10 @@ public class Explorer
 		this.idleRightNoLineairMovement = new ExplorerIdleRightNoLineairMovement(this);
 		this.idleLeftNoLineairMovement = new ExplorerIdleLeftNoLineairMovement(this);
 		this.idleFallAfterJump = new ExplorerIdleFallAfterJump(this);
+		//Sounds
+		this.pickUpJewelSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/pickUpJewel.mp3"));
+		this.fallOfHighFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfHighFloor.mp3"));
+		this.fallOfLowFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfLowFloor.mp3"));
 		this.state = this.idleRight;
 	}
 	
@@ -301,6 +313,10 @@ public class Explorer
 	public void Update(float delta)
 	{
 		ExplorerManager.setExplorer(this);
+		if (ExplorerManager.CollisionDetectionExplorerJewels())
+		{
+			this.pickUpJewelSound.play(0.8f);
+		}
 		this.timer = this.timer + delta;
 		if ( this.timer > 1)
 		{

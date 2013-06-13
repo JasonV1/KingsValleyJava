@@ -12,7 +12,7 @@ public class KingsValley1 extends Game {
 	//Fields
 	private SpriteBatch batch;
 	private GameScreen gameScreen;
-	private static boolean isAndroid = false;
+	private static boolean isAndroid = true;
 	
 	//Properties
 	public static boolean IsAndroid()

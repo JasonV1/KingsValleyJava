@@ -8,6 +8,7 @@ import com.adruijter.kingsvalley1.stairsLeft.StairsLeft;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.jewel.Jewel;
 
 public class ExplorerManager
 {
@@ -16,6 +17,7 @@ public class ExplorerManager
     private static ArrayList<StairsRight> stairsRight;
     private static ArrayList<StairsLeft> stairsLeft;
     private static ArrayList<Floor> floors;
+    private static ArrayList<Jewel> jewels;
     private static boolean debug = false;
 
     //Properties
@@ -40,6 +42,9 @@ public class ExplorerManager
 		ExplorerManager.floors = floors;
 	}
 	
+	public static void setJewels(ArrayList<Jewel> jewels){
+		ExplorerManager.jewels = jewels;
+	}
 	public static boolean CollisionDetectionBottomStairsRight()
     {
         for (StairsRight stairs : stairsRight)
@@ -203,6 +208,14 @@ public class ExplorerManager
 	    		{
 	    			if (explorer.getCollisionRectStairs().x + explorer.getCollisionRectStairs().getWidth() - 8 < floor.getCollisionRectangle().x)
 	    			{
+	    				if (floor.getHighOrLowFallLeft() == '{')
+    					{
+    						explorer.getFallOfHighFloorSound().play(1.0f);
+    					}
+    					else if (floor.getHighOrLowFallLeft() == '[')
+    					{
+    						explorer.getFallOfLowFloorSound().play(1.0f);
+    					}
 	    				return true;
 	    			}	    			
 	    		}  
@@ -224,6 +237,14 @@ public class ExplorerManager
     					(floor.getCollisionRectangle().x + floor.getCollisionRectangle().getWidth()))
 	    			{
     					floor.setColor(new Color(0f,1f,0f,1f));
+    					if (floor.getHighOrLowFallRight() == '}')
+    					{
+    						explorer.getFallOfHighFloorSound().play(1.0f);
+    					}
+    					else if (floor.getHighOrLowFallRight() == ']')
+    					{
+    						explorer.getFallOfLowFloorSound().play(1.0f);
+    					}
     					return true;
 	    			}	    			
 	    		}  
@@ -316,6 +337,19 @@ public class ExplorerManager
     		}
     	}
     	
+    	return false;
+    }
+    
+    public static boolean CollisionDetectionExplorerJewels()
+    {
+    	for (Jewel jewel : jewels )
+    	{
+    		if (explorer.getCollisionRectStairs().overlaps(jewel.getCollisionRectangle()))
+    		{
+    			jewels.remove(jewel);
+    			return true;
+    		}
+    	}
     	return false;
     }
     

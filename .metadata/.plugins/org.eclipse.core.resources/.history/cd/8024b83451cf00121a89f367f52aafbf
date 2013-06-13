@@ -1,0 +1,23 @@
+package com.jason.kingsvalley1.score;
+
+public class Score 
+{
+	private static int gameScore;
+
+	public static int getGameScore() {
+		return gameScore;
+	}
+
+	public static void setGameScore(int gameScore) {
+		Score.gameScore = gameScore;
+	}
+	
+	public static void AdjustScore()
+	{
+		string theScore = (String)gameScore
+		
+		
+		
+		
+	}
+}
