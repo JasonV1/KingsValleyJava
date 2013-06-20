@@ -43,9 +43,11 @@ public class Floor
 	public char getHighOrLowFallRight() {
 		return highOrLowFallRight;
 	}
+	
 	public char getHighOrLowFallLeft() {
 		return highOrLowFallLeft;
 	}
+	
 	//Constructor
 	public Floor(KingsValley1 game, Vector2 position, TextureRegion region, int amountOfBricks,
 					char highOrLowFallRight, char highOrLowFallLeft)

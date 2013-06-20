@@ -1,0 +1,90 @@
+package com.adruijter.kingsvalley1.explorer;
+
+import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
+import com.badlogic.gdx.math.Vector2;
+
+public class ExplorerStartIdle extends AnimatedSprite
+{
+	private Vector2 rightDoorPosition, leftDoorPosition;
+	private float timer = 0f;
+	private Explorer explorer;
+	private String behind, inFront;
+	private float leftDoorWidth;
+	private float offset = 0f;
+	
+	public ExplorerStartIdle(Explorer explorer)
+	{
+		super(explorer);
+		this.behind = "leftDoor";
+		this.inFront = "rightDoor";
+		this.leftDoorWidth = 48f;
+		this.explorer = explorer;
+		this.effect = true;
+		this.i = 7;
+		this.rightDoorPosition = new Vector2 (explorer.getPosition().x + 12f, explorer.getPosition().y);
+		this.leftDoorPosition = new Vector2(explorer.getPosition().x - 36f, explorer.getPosition().y);
+		
+	}
+	
+	public void Update(float delta)
+	{
+		this.timer += delta;
+		if (this.timer < 120f/60f)
+		{
+			this.behind = "leftDoor";
+			this.inFront = "rightDoor";
+		}
+		
+		else if (this.timer < 280f/60f)
+		{
+			this.behind = "doorHalfOpen";
+			this.leftDoorPosition = new Vector2 (explorer.getPosition().x, explorer.getPosition().y - 15f);
+			this.offset = -20f;
+			this.inFront = "transparantDoor";
+		}
+		
+		else if (this.timer < 380f/60f)
+		{
+			this.behind = "doorClosed";
+			this.leftDoorWidth = 31f;
+			this.leftDoorPosition = new Vector2 (explorer.getPosition().x + 7f, explorer.getPosition().y - 15f);			
+			this.inFront = "transparantDoor";
+		}
+
+		else
+		{
+			this.explorer.setState(this.explorer.getIdleLeft());
+		}
+		
+		/*
+		this.explorer.setPosition(this.explorer.getPosition().add(-1f, 0.5f));
+		if (ExplorerManager.CollisionDetectionStartWalkDownStairs())
+		{
+			this.explorer.setPosition(this.explorer.getPosition().add(0f, this.explorer.getPixelsThroughFloor()));
+			
+		}*/
+		//super.Update(delta);
+	}
+	
+	public void Draw(float delta)
+	{
+		
+		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get(this.behind),
+				this.leftDoorPosition.x,
+				this.leftDoorPosition.y, 
+				this.leftDoorWidth, 
+				48);
+		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get("handle"),
+				this.leftDoorPosition.x - 16f,
+				this.leftDoorPosition.y, 
+				16, 
+				21);
+super.Draw(delta);	
+		super.Draw(delta);	
+		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get(this.inFront),
+						this.rightDoorPosition.x,
+						this.rightDoorPosition.y, 
+						16, 
+						48);
+	}
+}

@@ -3,9 +3,9 @@ package com.adruijter.kingsvalley1.explorer;
 import java.util.ArrayList;
 
 import com.adruijter.kingsvalley1.floor.Floor;
-import com.jason.kingsvalley1.jewel.Jewel;
+import com.adruijter.kingsvalley1.jewel.Jewel;
 import com.adruijter.kingsvalley1.level.Level;
-import com.jason.kingsvalley1.score.Score;
+import com.adruijter.kingsvalley1.score.Score;
 import com.adruijter.kingsvalley1.stairsRight.StairsRight;
 import com.adruijter.kingsvalley1.stairsLeft.StairsLeft;
 import com.badlogic.gdx.Gdx;
@@ -49,12 +49,12 @@ public class ExplorerManager
 	public static void setFloors(ArrayList<Floor> floors) {
 		ExplorerManager.floors = floors;
 	}
-
+	
 	public static void setJewels(ArrayList<Jewel> jewels) {
 		ExplorerManager.jewels = jewels;
 	}
-
-
+	
+	
 	public static boolean CollisionDetectionBottomStairsRight()
     {
         for (StairsRight stairs : stairsRight)
@@ -361,6 +361,22 @@ public class ExplorerManager
     			Score.setHighScore(Score.getHighScore() + 500);
     			Score.AdjustScore(level);
     			Score.AdjustHighScore(level);
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public static boolean CollisionDetectionStartWalkDownStairs()
+    {
+    	for (Floor floor : floors)
+    	{
+    		if (explorer.getCollisionRectStairs().overlaps(floor.getCollisionRectangle()))
+    		{
+    			float pixelsThroughFloor = floor.getCollisionRectangle().y - 
+						 					explorer.getCollisionRectStairs().y - 
+						 							explorer.getCollisionText().getHeight()/2;    			
+    			explorer.setPixelsThroughFloor(pixelsThroughFloor);
     			return true;
     		}
     	}

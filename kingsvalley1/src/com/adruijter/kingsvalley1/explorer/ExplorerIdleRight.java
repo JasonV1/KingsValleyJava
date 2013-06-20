@@ -19,6 +19,7 @@ public class ExplorerIdleRight extends AnimatedSprite
 		this.explorer = explorer;
 		this.i = 7;
 		this.Initialize();
+		this.effect = false;
 	}
 	
 	public void Initialize()

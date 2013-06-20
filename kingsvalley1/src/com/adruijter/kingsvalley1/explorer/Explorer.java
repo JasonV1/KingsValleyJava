@@ -50,7 +50,9 @@ public class Explorer
 	private Sound pickUpJewelSound, fallOfHighFloorSound, fallOfLowFloorSound;
 	private Map<String, TextureRegion> region;
 	private ExplorerStart start;
-	
+	private ExplorerStartWalkDownStairs startWalkDownStairs;
+	private ExplorerStartIdle startIdle;
+	//Hallo for pull
 	
 	//Properties
 	public Vector2 getPosition()
@@ -269,9 +271,11 @@ public class Explorer
 	public Sound getFallOfHighFloorSound() {
 		return fallOfHighFloorSound;
 	}
+	
 	public Sound getFallOfLowFloorSound() {
 		return fallOfLowFloorSound;
 	}
+	
 	public Map<String, TextureRegion> getRegion() {
 		return region;
 	}
@@ -284,12 +288,24 @@ public class Explorer
 	public void setStart(ExplorerStart start) {
 		this.start = start;
 	}
+	public ExplorerStartWalkDownStairs getStartWalkDownStairs() {
+		return startWalkDownStairs;
+	}
+	public void setStartWalkDownStairs(ExplorerStartWalkDownStairs startWalkDownStairs) {
+		this.startWalkDownStairs = startWalkDownStairs;
+	}
+	public ExplorerStartIdle getStartIdle() {
+		return startIdle;
+	}
+	public void setStartIdle(ExplorerStartIdle startIdle) {
+		this.startIdle = startIdle;
+	}
 	//Constructor
 	public Explorer(KingsValley1 game, Vector2 position, float speed, Map<String, TextureRegion> region)
 	{
 		this.game = game;
 		this.position = position;
-		this.setRegion(region);
+		this.region = region;
 		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 15, 20, 18);
 		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
 		this.collisionRectJumpLeft = new Rectangle(this.position.x, this.position.y - 2, 2, 1);
@@ -318,11 +334,14 @@ public class Explorer
 		this.idleLeftNoLineairMovement = new ExplorerIdleLeftNoLineairMovement(this);
 		this.idleFallAfterJump = new ExplorerIdleFallAfterJump(this);
 		this.start = new ExplorerStart(this);
+		this.startWalkDownStairs = new ExplorerStartWalkDownStairs(this);
+		this.startIdle = new ExplorerStartIdle(this);
 		//Sounds
 		this.pickUpJewelSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/pickUpJewel.mp3"));
 		this.fallOfHighFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfHighFloor.mp3"));
 		this.fallOfLowFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfLowFloor.mp3"));
-		this.state = this.idleRight;
+		//this.state = this.start;
+		this.state = this.start;
 	}
 	
 	

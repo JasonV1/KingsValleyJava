@@ -31,8 +31,10 @@ public class ExplorerIdleLeft extends AnimatedSprite
 		}
 		if ( Gdx.input.isKeyPressed(Keys.RIGHT))
 		{
+			this.explorer.getWalkRight().Initialize();
 			this.explorer.setState(this.explorer.getWalkRight());
 		}
+		//Gdx.app.log("flip", Boolean.toString(this.effect));
 		
 	}
 	

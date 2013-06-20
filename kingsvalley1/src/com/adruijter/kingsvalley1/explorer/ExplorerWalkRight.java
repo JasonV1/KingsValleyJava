@@ -16,12 +16,14 @@ public class ExplorerWalkRight extends AnimatedSprite{
 		super(explorer);
 		this.explorer = explorer;
 		this.speed = this.explorer.getSpeed();
+		
 	}
 	
 	public void Initialize()
 	{
 		this.explorer.getCollisionRectStairs().setWidth(12f);
 		this.explorer.getCollisionRectStairs().setX(this.explorer.getPosition().x + 8f);
+		//this.effect = false;
 	}
 	
 	public void Update(float delta)
