@@ -7,6 +7,7 @@ import java.util.Map;
 import com.adruijter.kingsvalley1.KingsValley1;
 import com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -300,6 +301,7 @@ public class Explorer
 	public void setStartIdle(ExplorerStartIdle startIdle) {
 		this.startIdle = startIdle;
 	}
+	
 	//Constructor
 	public Explorer(KingsValley1 game, Vector2 position, float speed, Map<String, TextureRegion> region)
 	{
@@ -340,6 +342,9 @@ public class Explorer
 		this.pickUpJewelSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/pickUpJewel.mp3"));
 		this.fallOfHighFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfHighFloor.mp3"));
 		this.fallOfLowFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfLowFloor.mp3"));
+		
+		//Music
+	
 		//this.state = this.start;
 		this.state = this.start;
 	}

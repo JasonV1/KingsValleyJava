@@ -32,8 +32,8 @@ public class ExplorerStartIdle extends AnimatedSprite
 		this.leftDoorPosition = new Vector2(explorer.getPosition().x - 36f, explorer.getPosition().y);
 		this.handleRegions = new HashMap<Integer, String>();
 		this.handleRegions.put(0, "handleDownTransparant");
-		this.handleRegions.put(0, "handleDownWhite");
-		this.handleRegions.put(0, "handleDownYellow");
+		this.handleRegions.put(1, "handleDownWhite");
+		this.handleRegions.put(2, "handleDownYellow");
 		//this.handle = this.handleRegions.get(0);
 		
 	}
@@ -41,13 +41,13 @@ public class ExplorerStartIdle extends AnimatedSprite
 	public void Update(float delta)
 	{
 		this.timer += delta;
-		if (this.timer < 120f/60f)
+		if (this.timer < 40f/60f)
 		{
 			this.behind = "leftDoor";
 			this.inFront = "rightDoor";
 		}
 		
-		else if (this.timer < 280f/60f)
+		else if (this.timer < 100f/60f)
 		{
 			this.behind = "doorHalfOpen";
 			this.leftDoorPosition = new Vector2 (explorer.getPosition().x, explorer.getPosition().y - 15f);
@@ -55,16 +55,16 @@ public class ExplorerStartIdle extends AnimatedSprite
 			this.inFront = "transparantDoor";
 		}
 		
-		else if (this.timer < 580f/60f)
+		else if (this.timer < 200f/60f)
 		{
 			this.behind = "doorClosed";
 			this.offset = -31f;
 			this.leftDoorWidth = 32f;
 			this.leftDoorPosition = new Vector2 (explorer.getPosition().x + 7f, explorer.getPosition().y - 15f);			
 			this.inFront = "transparantDoor";
-			if (this.timerHandle < 3)
+			if (this.timerHandle < 2)
 			{
-				this.timerHandle =+ delta;
+				this.timerHandle += delta * 40;
 				this.handle = this.handleRegions.get(this.j);
 			}
 			else
@@ -78,12 +78,16 @@ public class ExplorerStartIdle extends AnimatedSprite
 				{
 					this.j = 0;
 				}
+				
 			}
 		}
 
 		else
 		{
 			this.explorer.setState(this.explorer.getIdleLeft());
+			this.explorer.getGame().getGameScreen().getLevel().getMasterMelody().play();
+			this.explorer.getGame().getGameScreen().getLevel().getMasterMelody().setVolume(0.6f);
+			this.explorer.getGame().getGameScreen().getLevel().getMasterMelody().setLooping(true);
 		}
 		
 		/*
@@ -100,16 +104,15 @@ public class ExplorerStartIdle extends AnimatedSprite
 	{
 		
 		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get(this.behind),
-				this.leftDoorPosition.x,
-				this.leftDoorPosition.y, 
-				this.leftDoorWidth, 
-				48);
+												this.leftDoorPosition.x,
+												this.leftDoorPosition.y, 
+												this.leftDoorWidth, 
+												48);
 		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get(this.handle),
-				this.leftDoorPosition.x - 16f,
-				this.leftDoorPosition.y, 
-				16, 
-				21);
-super.Draw(delta);	
+												this.leftDoorPosition.x + this.offset,
+												this.leftDoorPosition.y, 
+												16, 
+												21);
 		super.Draw(delta);	
 		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get(this.inFront),
 						this.rightDoorPosition.x,

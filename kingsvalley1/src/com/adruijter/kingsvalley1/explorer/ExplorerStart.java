@@ -23,12 +23,13 @@ public class ExplorerStart extends AnimatedSprite
 	public void Update(float delta)
 	{
 		this.timer += delta;
-		
+		/*
 		if ( this.timer < 120f/60f)
 		{
 			
 		}
-		else if ( this.timer < 150f/60f )
+		else */
+		if ( this.timer < 150f/60f )
 		{
 			this.explorer.setState(this.explorer.getStartWalkDownStairs());
 		}

@@ -74,7 +74,9 @@ public class ExplorerGestureListener implements GestureListener
 			 !this.explorer.getState().equals(this.explorer.getJumpIdleLeft())			&&
 			 !this.explorer.getState().equals(this.explorer.getJumpIdleRight())			&&
 			 !this.explorer.getState().equals(this.explorer.getFallOfFloorLeft())		&&
-			 !this.explorer.getState().equals(this.explorer.getFallOfFloorRight()))
+			 !this.explorer.getState().equals(this.explorer.getStartIdle())				&&
+			 !this.explorer.getState().equals(this.explorer.getStartWalkDownStairs())	&&
+			 !this.explorer.getState().equals(this.explorer.getStart()))		 
 		{
 			if ( velocityX > 0 )
 			{

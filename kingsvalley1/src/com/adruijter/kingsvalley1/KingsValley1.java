@@ -6,6 +6,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,13 +20,28 @@ public class KingsValley1 extends Game
 	private SplashScreen splashScreen;
 	private static boolean isAndroid = true;
 	private Color backgroundColor = new Color(0.125f, 0.125f, 0.957f, 1f);
+	private Music introMusic;
 	
 	
 	//Properties
 	public static boolean IsAndroid()
 	{
+		if (Gdx.app.getType() == ApplicationType.Android)
+		{
+			isAndroid = true;
+		}
+		else if (Gdx.app.getType() == ApplicationType.Desktop)
+		{
+			isAndroid = false;
+		}
+		else if (Gdx.app.getType() == ApplicationType.WebGL)
+		{
+			isAndroid = false;
+		}
 		return isAndroid;
 	}
+	
+	
 	public GameScreen getGameScreen() {
 		return gameScreen;
 	}
@@ -53,21 +69,19 @@ public class KingsValley1 extends Game
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
+	public Music getIntroMusic() {
+		return introMusic;
+	}
+	public void setIntroMusic(Music introMusic) {
+		this.introMusic = introMusic;
+	}
 	@Override
 	public void create() {
 		this.batch = new SpriteBatch();
 		this.splashScreen = new SplashScreen(this);
 		this.gameScreen = new GameScreen(this);
-		this.setScreen(this.gameScreen);
-		switch(Gdx.app.getType())
-		{
-		   case Android:
-			   isAndroid = true;
-		   case Desktop:
-			   isAndroid = false;
-		   case WebGL:
-			   isAndroid = false;
-		}
+		this.setScreen(this.splashScreen);
+		this.introMusic = Gdx.audio.newMusic(Gdx.files.internal("data/Sound/intro.mp3"));
 	}
 
 	
@@ -81,8 +95,8 @@ public class KingsValley1 extends Game
 
 	@Override
 	public void render() {		
-		Gdx.gl.glClearColor(0.06f, 0.06f, 0.06f, 1f);
-		//Gdx.gl.glClearColor(this.backgroundColor.r, this.backgroundColor.g, this.backgroundColor.b, this.backgroundColor.a);
+		//Gdx.gl.glClearColor(0.06f, 0.06f, 0.06f, 1f);
+		Gdx.gl.glClearColor(this.backgroundColor.r, this.backgroundColor.g, this.backgroundColor.b, this.backgroundColor.a);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		for (int i = 0; i < 1000000; i++)

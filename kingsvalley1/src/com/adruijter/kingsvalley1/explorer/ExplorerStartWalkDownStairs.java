@@ -33,10 +33,15 @@ public class ExplorerStartWalkDownStairs extends AnimatedSprite
 	public void Draw(float delta)
 	{
 		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get("leftDoor"),
-				this.leftDoorPosition.x,
-				this.leftDoorPosition.y, 
-				48, 
-				48);
+												this.leftDoorPosition.x,
+												this.leftDoorPosition.y, 
+												48, 
+												48);
+		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get("handle"),
+												this.leftDoorPosition.x - 16f,
+												this.leftDoorPosition.y, 
+												16, 
+												21);
 		super.Draw(delta);	
 		this.explorer.getGame().getBatch().draw(this.explorer.getRegion().get("rightDoor"),
 						this.rightDoorPosition.x,

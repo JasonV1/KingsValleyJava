@@ -359,9 +359,9 @@ public class Level {
             case '!':
             	this.highScore.add(new Character(this.game, new Vector2(x, y), this.region.get("0"), '!'));
             	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');	
-            /*case '^':
+            case '^':
             	this.exitDoor = new ExitDoor(this.game, new Vector2(x, y), this.region);
-            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '^');	*/
+            	return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '^');	
             default:
                 return new Brick(this.game, new Vector2(x, y), this.region.get("brick_transparant"), '.');
         }

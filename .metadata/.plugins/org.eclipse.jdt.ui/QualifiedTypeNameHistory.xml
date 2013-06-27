@@ -11,8 +11,9 @@
 <fullyQualifiedTypeName name="com.badlogic.gdx.audio.Music"/>
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.brick.Image"/>
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.brick.IBuildingBlock"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="com.badlogic.gdx.math.Vector2"/>
 <fullyQualifiedTypeName name="com.adruijter.kingsvalley1.animatedsprite.AnimatedSprite"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
 </qualifiedTypeNameHistroy>
