@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.adruijter.kingsvalley1.KingsValley1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.KingsValley1;
 
 public class Crown
 {
@@ -19,7 +19,7 @@ public class Crown
 	private Map<String, Color> colors;
 	private Color color;
 	private float timer = 0f;
-
+	
 	public Crown(KingsValley1 game, Vector2 position, Map<String, TextureRegion> region)
 	{
 		this.game = game;
@@ -34,11 +34,11 @@ public class Crown
 		this.colors.put("transparant", new Color(0.847f, 0.847f, 0.125f, 0f ));
 		this.color = this.colors.get("white");
 	}
-
+	
 	public void Update(float delta)
 	{
 		this.timer += delta * 40;
-
+		
 		if (this.timer <  2f)
 		{
 			this.color = this.colors.get("transparant");		
@@ -55,7 +55,7 @@ public class Crown
 			this.timer = 0f;
 		}
 	}
-
+	
 	public void Draw(float delta)
 	{
 		this.game.getBatch().setColor(this.color);

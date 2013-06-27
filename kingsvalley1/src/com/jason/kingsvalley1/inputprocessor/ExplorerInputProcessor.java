@@ -5,6 +5,7 @@ package com.jason.kingsvalley1.inputprocessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.jason.kingsvalley1.explorer.Explorer;
+import com.jason.kingsvalley1.explorer.ExplorerManager;
 import com.jason.kingsvalley1.level.Level;
 
 public class ExplorerInputProcessor implements InputProcessor
@@ -30,6 +31,7 @@ public class ExplorerInputProcessor implements InputProcessor
 					this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
 					this.explorer.getState().equals(this.explorer.getWalkLeft()))
 				{
+					this.explorer.getWalkRight().Initialize();
 					this.explorer.setState(this.explorer.getWalkRight());
 				}
 				else if (this.explorer.getState().equals(this.explorer.getIdleUpStairsRight()) ||
@@ -48,6 +50,7 @@ public class ExplorerInputProcessor implements InputProcessor
 					this.explorer.getState().equals(this.explorer.getIdleRight())||
 					this.explorer.getState().equals(this.explorer.getWalkRight()))
 				{
+					this.explorer.getWalkLeft().Initialize();
 					this.explorer.setState(this.explorer.getWalkLeft());
 				}
 				else if (this.explorer.getState().equals(this.explorer.getIdleUpStairsLeft()) ||
@@ -63,12 +66,22 @@ public class ExplorerInputProcessor implements InputProcessor
 				}
 				break;
 			case Keys.SPACE:
-				if (this.explorer.getState().equals(this.explorer.getWalkRight()))
+				if (this.explorer.getState().equals(this.explorer.getWalkRight()) && !ExplorerManager.CollisionDetectionJumpRight())
 				{
 					this.explorer.getJumpRight().Initialize();
 					this.explorer.setState(this.explorer.getJumpRight());
 				}
-				else if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
+				else if (this.explorer.getState().equals(this.explorer.getIdleRightNoLineairMovement()) && !ExplorerManager.CollisionDetectionJumpRight())
+				{
+					this.explorer.getJumpRight().Initialize();
+					this.explorer.setState(this.explorer.getJumpRight());
+				}
+				else if (this.explorer.getState().equals(this.explorer.getWalkLeft()) && !ExplorerManager.CollisionDetectionJumpLeft())
+				{
+					this.explorer.getJumpLeft().Initialize();
+					this.explorer.setState(this.explorer.getJumpLeft());
+				}
+				else if (this.explorer.getState().equals(this.explorer.getIdleLeftNoLineairMovement())&& !ExplorerManager.CollisionDetectionJumpLeft())
 				{
 					this.explorer.getJumpLeft().Initialize();
 					this.explorer.setState(this.explorer.getJumpLeft());
@@ -106,6 +119,10 @@ public class ExplorerInputProcessor implements InputProcessor
 				{
 					this.explorer.setState(this.explorer.getIdleDownStairsLeft());
 				}
+				else if (this.explorer.getState().equals(this.explorer.getIdleRightNoLineairMovement()))
+				{
+					this.explorer.setState(this.explorer.getIdleRight());
+				}
 				break;
 			case Keys.LEFT:
 				if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
@@ -121,6 +138,10 @@ public class ExplorerInputProcessor implements InputProcessor
 				{
 					this.explorer.setState(this.explorer.getIdleDownStairsRight());
 				}
+				else if ( this.explorer.getState().equals(this.explorer.getIdleLeftNoLineairMovement()))
+				{
+					this.explorer.setState(this.explorer.getIdleLeft());
+				}
 				break;
 		}	
 		return false;
@@ -135,6 +156,7 @@ public class ExplorerInputProcessor implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
+		/*
 		int x_right = 1200;
 		int x_left = 0;
 		int y = 620;
@@ -145,13 +167,14 @@ public class ExplorerInputProcessor implements InputProcessor
 		else if ( screenX > x_left  && screenX < x_left + 100  && screenY > y && screenY < y + 100)
 		{
 			this.explorer.setState(this.explorer.getWalkLeft());
-		}
+		}*/
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
+		/*
 		int x_right = 1200;
 		int x_left = 0;
 		int y = 620;
@@ -166,7 +189,7 @@ public class ExplorerInputProcessor implements InputProcessor
 				  this.explorer.getState().equals(this.explorer.getWalkLeft()))
 		{
 			this.explorer.setState(this.explorer.getIdleLeft());
-		}		
+		}*/	
 		return false;
 	}
 

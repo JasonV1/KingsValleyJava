@@ -19,10 +19,28 @@ public class ExplorerWalkLeft extends AnimatedSprite{
 		this.effect = true;
 	}
 	
+	//test 21:36 29-5
+	public void Initialize()
+	{
+		this.explorer.getCollisionRectStairs().setWidth(12f);
+		this.explorer.getCollisionRectStairs().setX(this.explorer.getPosition().x);
+	}//einde test
+	
 	public void Update(float delta)
 	{
 		this.explorer.setPosition(this.explorer.getPosition().
 				add(this.speed, 0f));
+		
+		//test 30-5 1:04
+		this.explorer.getCollisionRectStairs().setX(this.explorer.getPosition().x);
+		
+		if (ExplorerManager.CollisionDetectionWallInFrontLeft())
+		{
+			//Verander de state van de explorer
+			this.explorer.setPosition(this.explorer.getPosition().add(this.explorer.getPixelsInWallLeft(), 0f));
+			this.explorer.setState(this.explorer.getIdleLeftNoLineairMovement());
+		}
+		
 		if ( !Gdx.input.isKeyPressed(Keys.LEFT) && !KingsValley1.IsAndroid())
 		{
 			this.explorer.setState(this.explorer.getIdleLeft());
@@ -30,13 +48,21 @@ public class ExplorerWalkLeft extends AnimatedSprite{
 		if ( ExplorerManager.CollisionDetectionTopStairsRight() &&
 			 (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Keys.DOWN)))
 		{			
+			// Zorgt ervoor dat de explorer niet omhoog kan lopen........
+			this.explorer.setPosition(this.explorer.getPosition().add(-2f, 2f));
 			this.explorer.setState(this.explorer.getWalkDownStairsRight());
 		}
 		if ( ExplorerManager.CollisionDetectionBottomStairsLeft() &&
 			 (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Keys.UP)))
 		{
-			
+			// Zorgt ervoor dat de explorer niet omlaag kan lopen........
+			this.explorer.setPosition(this.explorer.getPosition().add(-2f, -2f));
 			this.explorer.setState(this.explorer.getWalkUpStairsLeft());
+		}
+		if ( ExplorerManager.CollisionDetectionFallOfFloorLeft())
+		{
+			this.explorer.getFallOfFloorLeft().Initialize();
+			this.explorer.setState(this.explorer.getFallOfFloorLeft());
 		}
 		super.Update(delta);
 	}

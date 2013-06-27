@@ -41,24 +41,15 @@ public class GameScreen implements Screen {
 		cam.position.set(544f/2f, 480f/2f, 0);
 		this.game.getBatch().setColor(1f, 1f, 1f, 1f);		
 		cam.update();
+		
+		
 	}
 
 	
 	@Override
-	public void render(float delta) {
-		/*
-		if ( Gdx.input.isTouched())
-		{
-			Gdx.app.log("x", Integer.toString(Gdx.input.getX()));
-			Gdx.app.log("y", Integer.toString(Gdx.input.getY())); 
-			//this.yzoom -= 10;
-			cam.setToOrtho(true,  this.ratio * this.yzoom, this.yzoom);
-			cam.position.set(544f/2f, 480/2f, 0);
-			cam.update();
-			Gdx.app.log("test", Float.toString(this.yzoom)); 
-		}*/
+	public void render(float delta)
+	{
 		this.logger.log();
-		//Gdx.app.log("1/delta", Float.toString(1f/delta));
 		this.level.Update(delta);
 		this.game.getBatch().setProjectionMatrix(cam.combined);	
 		this.game.getBatch().begin();

@@ -1,6 +1,7 @@
 package com.jason.kingsvalley1.brick;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jason.kingsvalley1.KingsValley1;
@@ -9,59 +10,53 @@ public class Image
 {
 	//Fields
     protected KingsValley1 game;
-    protected Texture texture;
     protected Rectangle rectangle;
     protected Vector2 position;
-    protected String imagePath;
+    protected TextureRegion region;
 
+    public TextureRegion getRegion() {
+		return region;
+	}
 
-    //Constructor
-    public Image(KingsValley1 game, Vector2 position, String imagePath)
+	public void setRegion(TextureRegion region) {
+		this.region = region;
+	}
+
+    public Vector2 getPosition() {
+		return position;
+	}
+
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
+
+	//Constructor
+    public Image(KingsValley1 game, Vector2 position, TextureRegion region)
     {
         this.game = game;
         this.position = position;
-        this.imagePath = imagePath;
-        this.texture = new Texture(this.imagePath);
+        this.region = region;
         this.rectangle = new Rectangle((int)this.position.x,
                                        (int)this.position.y,
-                                       this.texture.getWidth(),
-                                       this.texture.getHeight());
+                                       this.region.getRegionWidth(),
+                                       this.region.getRegionHeight());
     }
 
     //Draw
     public void Draw(float delta)
     {
-        //this.game.getBatch().draw(this.texture, this.position.x, this.position.y);
-        this.game.getBatch().draw(this.texture,
+        this.game.getBatch().draw(this.region,
 				    			  this.position.x,
 				   				  this.position.y,
-				   				  16f,
-				   				  16f,
-				   				  0,
-				   				  0,
-				   				  16,
-				   				  16,
-				   				  false,
-				   				  true);
+				   				  0f,
+				   				  0f,
+				   				  this.region.getRegionWidth(),
+				   				  this.region.getRegionHeight(),
+				   				  1f,
+				   				  1f,
+				   				  0f);
     }
     
-    
-    public void Draw(float delta, int i)
-    {
-        //this.game.getBatch().draw(this.texture, this.position.x, this.position.y);
-        this.game.getBatch().draw(this.texture,
-				    			  this.position.x + i * 16,
-				   				  this.position.y,
-				   				  16f,
-				   				  16f,
-				   				  0,
-				   				  0,
-				   				  16,
-				   				  16,
-				   				  false,
-				   				  true);
-    }
-
 	public String getImageName() {
 		return null;
 	}

@@ -2,11 +2,11 @@ package com.jason.kingsvalley1.jewel;
 
 import java.util.Map;
 
-import com.adruijter.kingsvalley1.KingsValley1;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.KingsValley1;
 
 public class Jewel 
 {
@@ -18,9 +18,8 @@ public class Jewel
 	private Map<String, TextureRegion> region;
 	private Rectangle collisionRectangle;
 	
+	
 	//Properties
-
-
 	public Rectangle getCollisionRectangle() {
 		return collisionRectangle;
 	}
@@ -37,20 +36,20 @@ public class Jewel
 		this.color = color;
 		this.region = region;
 		this.crown = new Crown(this.game, this.position, region);
-		this.setCollisionRectangle(new Rectangle(this.position.x, this.position.y,
+		this.collisionRectangle = new Rectangle(this.position.x, this.position.y,
 												this.region.get("jewel").getRegionWidth(),
-												this.region.get("jewel").getRegionHeight()));
+												this.region.get("jewel").getRegionHeight());
 	}
-
+	
 	public void Update(float delta)
 	{
 		this.crown.Update(delta);
 	}
-
+	
 	public void Draw(float delta)
 	{
-		this.game.getBatch().setColor(this.color);
 		this.crown.Draw(delta);
+		this.game.getBatch().setColor(this.color);
 		this.game.getBatch().draw(this.game.getGameScreen().getLevel().getRegion().get("jewel"),
 								  this.position.x,
 								  this.position.y,

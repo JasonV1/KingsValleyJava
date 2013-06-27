@@ -2455,3 +2455,48 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/kingsvalley1-a
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
 !SUBENTRY 1 org.eclipse.core.resources 4 368 2013-06-27 10:29:08.131
 !MESSAGE Resource '/kingsvalley1-android/res' does not exist.
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:36:18.429
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:36:53.640
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:04.934
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:13.705
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:24.184
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:34.383
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:44.149
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:37:53.153
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:38:02.154
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:38:10.562
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:38:23.641
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:38:50.207
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:38:58.588
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:39:06.510
+!MESSAGE com.android.ide.eclipse.adt
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-06-27 12:39:15.819
+!MESSAGE com.android.ide.eclipse.adt

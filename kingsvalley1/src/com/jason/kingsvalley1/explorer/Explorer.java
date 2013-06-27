@@ -2,7 +2,13 @@ package com.jason.kingsvalley1.explorer;
 
 
 
+import java.util.Map;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.jason.kingsvalley1.KingsValley1;
@@ -14,6 +20,9 @@ public class Explorer
 	private KingsValley1 game;
 	private Vector2 position;
 	private float speed;
+	private float pixelsThroughFloor;
+	private float pixelsInWallRight;
+	private float pixelsInWallLeft;
 	private Texture texture;
 	private AnimatedSprite state;
 	private ExplorerWalkRight walkRight;
@@ -32,9 +41,19 @@ public class Explorer
 	private ExplorerIdleUpStairsLeft idleUpStairsLeft;
 	private ExplorerIdleDownStairsLeft idleDownStairsLeft;
 	private ExplorerWalkDownStairsLeft walkDownStairsLeft;
-	private Rectangle collisionRectStairs;
+	private ExplorerFallOfFloorLeft fallOfFloorLeft;
+	private ExplorerFallOfFloorRight fallOfFloorRight;
+	private ExplorerIdleRightNoLineairMovement idleRightNoLineairMovement;
+	private ExplorerIdleLeftNoLineairMovement idleLeftNoLineairMovement;
+	private Rectangle collisionRectStairs, collisionRectJumpRight, collisionRectJumpLeft;
 	private Texture collisionText;
-	
+	private ExplorerIdleFallAfterJump idleFallAfterJump;
+	private Sound pickUpJewelSound, fallOfHighFloorSound, fallOfLowFloorSound;
+	private Map<String, TextureRegion> region;
+	private ExplorerStart start;
+	private ExplorerStartWalkDownStairs startWalkDownStairs;
+	private ExplorerStartIdle startIdle;
+	//Hallo for pull
 	
 	//Properties
 	public Vector2 getPosition()
@@ -46,7 +65,12 @@ public class Explorer
 		this.position = position;
 		this.collisionRectStairs.x = this.position.x;
 		this.collisionRectStairs.y = this.position.y + 16;
+		this.collisionRectJumpRight.x = this.position.x + 18;
+		this.collisionRectJumpRight.y = this.position.y - 2;
+		this.collisionRectJumpLeft.x = this.position.x;
+		this.collisionRectJumpLeft.y = this.position.y - 2;
 	}
+	
 	public float getSpeed()
 	{
 		return this.speed;
@@ -157,15 +181,12 @@ public class Explorer
 	public void setWalkDownStairsRight(ExplorerWalkDownStairsRight walkDownStairsRight) {
 		this.walkDownStairsRight = walkDownStairsRight;
 	}
-	
-	
 	public ExplorerWalkUpStairsLeft getWalkUpStairsLeft() {
 		return walkUpStairsLeft;
 	}
 	public void setWalkUpStairsLeft(ExplorerWalkUpStairsLeft walkUpStairsLeft) {
 		this.walkUpStairsLeft = walkUpStairsLeft;
 	}
-	
 	public ExplorerIdleUpStairsLeft getIdleUpStairsLeft() {
 		return idleUpStairsLeft;
 	}
@@ -183,13 +204,113 @@ public class Explorer
 	}
 	public void setWalkDownStairsLeft(ExplorerWalkDownStairsLeft walkDownStairsLeft) {
 		this.walkDownStairsLeft = walkDownStairsLeft;
+	}	
+	public ExplorerFallOfFloorLeft getFallOfFloorLeft() {
+		return fallOfFloorLeft;
 	}
+	public void setFallOfFloorLeft(ExplorerFallOfFloorLeft fallOfFloorLeft) {
+		this.fallOfFloorLeft = fallOfFloorLeft;
+	}
+	public float getPixelsThroughFloor() {
+		return pixelsThroughFloor;
+	}
+	public void setPixelsThroughFloor(float pixelsThroughFloor) {
+		this.pixelsThroughFloor = pixelsThroughFloor;
+	}	
+	public ExplorerFallOfFloorRight getFallOfFloorRight() {
+		return fallOfFloorRight;
+	}
+	public void setFallOfFloorRight(ExplorerFallOfFloorRight fallOfFloorRight) {
+		this.fallOfFloorRight = fallOfFloorRight;
+	}
+	
+	public float getPixelsInWallRight() {
+		return pixelsInWallRight;
+	}
+	public void setPixelsInWallRight(float pixelsInWallRight) {
+		this.pixelsInWallRight = pixelsInWallRight;
+	}
+	
+	public float getPixelsInWallLeft() {
+		return pixelsInWallLeft;
+	}
+	public void setPixelsInWallLeft(float pixelsInWallLeft) {
+		this.pixelsInWallLeft = pixelsInWallLeft;
+	}
+	public ExplorerIdleRightNoLineairMovement getIdleRightNoLineairMovement() {
+		return idleRightNoLineairMovement;
+	}
+	public void setIdleRightNoLineairMovement(ExplorerIdleRightNoLineairMovement idleRightNoLineairMovement) {
+		this.idleRightNoLineairMovement = idleRightNoLineairMovement;
+	}
+	
+	public ExplorerIdleLeftNoLineairMovement getIdleLeftNoLineairMovement() {
+		return idleLeftNoLineairMovement;
+	}
+	public void setIdleLeftNoLineairMovement(ExplorerIdleLeftNoLineairMovement idleLeftNoLineairMovement) {
+		this.idleLeftNoLineairMovement = idleLeftNoLineairMovement;
+	}
+	
+	public Rectangle getCollisionRectJumpRight() {
+		return collisionRectJumpRight;
+	}
+	public void setCollisionRectJumpRight(Rectangle collisionRectJumpRight) {
+		this.collisionRectJumpRight = collisionRectJumpRight;
+	}
+	public Rectangle getCollisionRectJumpLeft() {
+		return collisionRectJumpLeft;
+	}
+	public void setCollisionRectJumpLeft(Rectangle collisionRectJumpLeft) {
+		this.collisionRectJumpLeft = collisionRectJumpLeft;
+	}
+	public ExplorerIdleFallAfterJump getIdleFallAfterJump() {
+		return idleFallAfterJump;
+	}
+	public void setIdleFallAfterJump(ExplorerIdleFallAfterJump idleFallAfterJump) {
+		this.idleFallAfterJump = idleFallAfterJump;
+	}
+	public Sound getFallOfHighFloorSound() {
+		return fallOfHighFloorSound;
+	}
+	
+	public Sound getFallOfLowFloorSound() {
+		return fallOfLowFloorSound;
+	}
+	
+	public Map<String, TextureRegion> getRegion() {
+		return region;
+	}
+	public void setRegion(Map<String, TextureRegion> region) {
+		this.region = region;
+	}
+	public ExplorerStart getStart() {
+		return start;
+	}
+	public void setStart(ExplorerStart start) {
+		this.start = start;
+	}
+	public ExplorerStartWalkDownStairs getStartWalkDownStairs() {
+		return startWalkDownStairs;
+	}
+	public void setStartWalkDownStairs(ExplorerStartWalkDownStairs startWalkDownStairs) {
+		this.startWalkDownStairs = startWalkDownStairs;
+	}
+	public ExplorerStartIdle getStartIdle() {
+		return startIdle;
+	}
+	public void setStartIdle(ExplorerStartIdle startIdle) {
+		this.startIdle = startIdle;
+	}
+	
 	//Constructor
-	public Explorer(KingsValley1 game, Vector2 position, float speed)
+	public Explorer(KingsValley1 game, Vector2 position, float speed, Map<String, TextureRegion> region)
 	{
 		this.game = game;
 		this.position = position;
-		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 16, 16, 17);
+		this.region = region;
+		this.collisionRectStairs = new Rectangle(this.position.x, this.position.y + 15, 20, 18);
+		this.collisionRectJumpRight = new Rectangle(this.position.x + 18, this.position.y - 2, 2, 1);
+		this.collisionRectJumpLeft = new Rectangle(this.position.x, this.position.y - 2, 2, 1);
 		this.speed = speed;	
 		this.texture = new Texture("data/Explorer/explorer.png");
 		this.collisionText = new Texture("data/Explorer/collision_text.png");
@@ -197,10 +318,10 @@ public class Explorer
 		this.idleRight = new ExplorerIdleRight(this);
 		this.idleLeft = new ExplorerIdleLeft(this);
 		this.walkLeft = new ExplorerWalkLeft(this);
-		this.jumpRight = new ExplorerJumpRight(this, 20, 32);
-		this.jumpLeft = new ExplorerJumpLeft(this, -20, 32);
-		this.jumpIdleRight = new ExplorerJumpIdleRight(this, 20, 32);
-		this.jumpIdleLeft = new ExplorerJumpIdleLeft(this, 20, 32);
+		this.jumpRight = new ExplorerJumpRight(this, 24, 32);
+		this.jumpLeft = new ExplorerJumpLeft(this, -24, 32);
+		this.jumpIdleRight = new ExplorerJumpIdleRight(this, 24, 32);
+		this.jumpIdleLeft = new ExplorerJumpIdleLeft(this, 24, 32);
 		this.walkUpStairsRight = new ExplorerWalkUpStairsRight(this);
 		this.idleUpStairsRight = new ExplorerIdleUpStairsRight(this);
 		this.idleDownStairsRight = new ExplorerIdleDownStairsRight(this);
@@ -209,14 +330,41 @@ public class Explorer
 		this.idleUpStairsLeft = new ExplorerIdleUpStairsLeft(this);
 		this.idleDownStairsLeft = new ExplorerIdleDownStairsLeft(this);
 		this.walkDownStairsLeft = new ExplorerWalkDownStairsLeft(this);
-		this.state = this.idleRight;
+		this.fallOfFloorLeft = new ExplorerFallOfFloorLeft(this, -1, 1);
+		this.fallOfFloorRight = new ExplorerFallOfFloorRight(this, 1, 1);
+		this.idleRightNoLineairMovement = new ExplorerIdleRightNoLineairMovement(this);
+		this.idleLeftNoLineairMovement = new ExplorerIdleLeftNoLineairMovement(this);
+		this.idleFallAfterJump = new ExplorerIdleFallAfterJump(this);
+		this.start = new ExplorerStart(this);
+		this.startWalkDownStairs = new ExplorerStartWalkDownStairs(this);
+		this.startIdle = new ExplorerStartIdle(this);
+		//Sounds
+		this.pickUpJewelSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/pickUpJewel.mp3"));
+		this.fallOfHighFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfHighFloor.mp3"));
+		this.fallOfLowFloorSound = Gdx.audio.newSound(Gdx.files.internal("data/Sound/fallOfLowFloor.mp3"));
+		
+		//Music
+	
+		//this.state = this.start;
+		this.state = this.start;
 	}
 	
 	
 	//Update
+	float timer = 0;
 	public void Update(float delta)
 	{
 		ExplorerManager.setExplorer(this);
+		if (ExplorerManager.CollisionDetectionExplorerJewels())
+		{
+			this.pickUpJewelSound.play(0.8f);
+		}
+		this.timer = this.timer + delta;
+		if ( this.timer > 1)
+		{
+			//Gdx.app.log("x:", this.position.toString());
+			this.timer = 0;
+		}
 		this.state.Update(delta);
 	}
 	
@@ -224,6 +372,21 @@ public class Explorer
 	//Draw
 	public void Draw(float delta)
 	{
+		/*
+		this.getGame().getBatch().setColor(1f, 1f, 1f, 1f);
+		this.game.getBatch().draw(this.collisionText, this.collisionRectStairs.x, this.collisionRectStairs.y, 
+				this.collisionRectStairs.getWidth(), this.collisionRectStairs.getHeight());
+		this.getGame().getBatch().setColor(1f, 0f, 0f, 1f);
+		this.game.getBatch().draw(this.collisionText,
+								  this.collisionRectJumpRight.x,
+												this.collisionRectJumpRight.y, 
+						this.collisionRectJumpRight.getWidth(), this.collisionRectJumpRight.getHeight());
+		this.getGame().getBatch().setColor(1f, 0f, 0f, 1f);
+		this.game.getBatch().draw(this.collisionText,
+								  this.collisionRectJumpLeft.x,
+												this.collisionRectJumpLeft.y, 
+						this.collisionRectJumpLeft.getWidth(), this.collisionRectJumpLeft.getHeight());*/
+		this.getGame().getBatch().setColor(1f, 1f, 1f, 1f);
 		this.state.Draw(delta);		
 	}
 }

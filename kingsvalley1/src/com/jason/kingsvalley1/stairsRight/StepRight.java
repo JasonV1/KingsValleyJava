@@ -1,5 +1,6 @@
 package com.jason.kingsvalley1.stairsRight;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.jason.kingsvalley1.KingsValley1;
 import com.jason.kingsvalley1.brick.IBuildingBlock;
@@ -9,13 +10,12 @@ public class StepRight extends Image implements IBuildingBlock {
 
 	//Fields
 	private char character;
-    private String imageName;
     
 	//Constructor
-	public StepRight(KingsValley1 game, Vector2 position, String imageName, char character) {
-		super(game, position, "data/Stairs/" + imageName);
+	public StepRight(KingsValley1 game, Vector2 position, TextureRegion region, char character) 
+	{
+		super(game, position, region);
 		this.character = character;
-		this.imageName = imageName;
 	}
 	
 	//Properties
@@ -29,16 +29,4 @@ public class StepRight extends Image implements IBuildingBlock {
 	public char getCharacter() {
 		return this.character;
 	}
-
-	@Override
-	public String getImageName() {
-		return this.imageName;
-	}
-
-	@Override
-	public void setImageName(String imageName) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

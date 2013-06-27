@@ -3,6 +3,7 @@ package com.jason.kingsvalley1.stairsRight;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2; 
 import com.jason.kingsvalley1.KingsValley1;
@@ -29,18 +30,19 @@ public class StairsRight
         return this.collisionRectTop;
     }
 
-    public StairsRight(KingsValley1 game, Vector2 position, int amountOfSteps)
+    public StairsRight(KingsValley1 game, Vector2 position, int amountOfSteps, TextureRegion trapRight01,
+    						TextureRegion trapRight02, TextureRegion trapTopRight02)
     {
         this.game = game;
         this.collisionText = new Texture("data/Stairs/collision_text.png");
         this.position = position.add(new Vector2(-amountOfSteps * 16, amountOfSteps * 16));
         this.amountOfSteps = amountOfSteps;
         this.stairs = new ArrayList<StepRight>();
-        this.LoadContent();
+        this.LoadContent(trapRight01, trapRight02, trapTopRight02);
     }
 
     /* Hier wordt de content geladen */
-    private void LoadContent()
+    private void LoadContent(TextureRegion trapRight01, TextureRegion trapRight02, TextureRegion trapTopRight02)
     {
         this.collisionRectBottom = new Rectangle(this.position.x,
                                                  this.position.y,
@@ -51,18 +53,18 @@ public class StairsRight
             this.stairs.add(new StepRight(this.game,
                                           new Vector2(this.position.x + i * 16,
                                                       this.position.y - i * 16),
-                                          "trapRight01.png",
+                                          trapRight01,
                                           '^'));
             this.stairs.add(new StepRight(this.game,
                                           new Vector2(this.position.x + (i+1) * 16, 
                                                       this.position.y - i * 16),
-                                          "trapRight02.png",
+                                          trapRight02,
                                           '^'));
         }
         this.stairs.add(new StepRight(this.game, 
                                       new Vector2(this.position.x + (this.amountOfSteps + 1) * 16,
                                                   this.position.y - this.amountOfSteps * 16),
-                                                  "trapTopRight02.png",
+                                                  trapTopRight02,
                                                   '^'));
         this.collisionRectTop = new Rectangle(this.position.x + (this.amountOfSteps) * 16,
                                               this.position.y - this.amountOfSteps * 16,

@@ -1,10 +1,10 @@
 package com.jason.kingsvalley1.character;
 
-import com.adruijter.kingsvalley1.KingsValley1;
-import com.adruijter.kingsvalley1.brick.IBuildingBlock;
-import com.adruijter.kingsvalley1.brick.Image;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.jason.kingsvalley1.KingsValley1;
+import com.jason.kingsvalley1.brick.IBuildingBlock;
+import com.jason.kingsvalley1.brick.Image;
 
 public class Character extends Image implements IBuildingBlock
 {

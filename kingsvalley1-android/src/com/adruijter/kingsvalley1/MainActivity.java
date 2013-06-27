@@ -2,9 +2,9 @@ package com.adruijter.kingsvalley1;
 
 import android.os.Bundle;
 
-import com.adruijter.kingsvalley1.KingsValley1;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.jason.kingsvalley1.KingsValley1;
 
 public class MainActivity extends AndroidApplication {
     @Override
